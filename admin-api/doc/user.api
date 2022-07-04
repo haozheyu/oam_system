@@ -5,3 +5,5 @@ info(
 )
 
 import "user/user.api"
+import "user/dept.api"
+import "user/role.api"

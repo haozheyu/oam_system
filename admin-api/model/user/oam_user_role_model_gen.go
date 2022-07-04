@@ -35,15 +35,15 @@ type (
 	}
 
 	OamUserRole struct {
-		Id             int64          `db:"id"`               // 编号
-		Name           sql.NullString `db:"name"`             // 角色名称
-		RoleType       sql.NullInt64  `db:"role_type"`        // 角色类型
-		CreateBy       sql.NullString `db:"create_by"`        // 创建人
-		CreateTime     sql.NullInt64  `db:"create_time"`      // 创建时间
-		LastUpdateBy   sql.NullString `db:"last_update_by"`   // 更新人
-		LastUpdateTime sql.NullInt64  `db:"last_update_time"` // 更新时间
-		DelFlag        int64          `db:"del_flag"`         // 是否删除  -1：已删除  0：正常
-		Status         int64          `db:"status"`           // 状态  1:启用,0:禁用
+		Id             int64  `db:"id"`               // 编号
+		Name           string `db:"name"`             // 角色名称
+		RoleType       int64  `db:"role_type"`        // 角色类型
+		CreateBy       string `db:"create_by"`        // 创建人
+		CreateTime     int64  `db:"create_time"`      // 创建时间
+		LastUpdateBy   string `db:"last_update_by"`   // 更新人
+		LastUpdateTime int64  `db:"last_update_time"` // 更新时间
+		DelFlag        int64  `db:"del_flag"`         // 是否删除  -1：已删除  0：正常
+		Status         int64  `db:"status"`           // 状态  1:启用,0:禁用
 	}
 )
 

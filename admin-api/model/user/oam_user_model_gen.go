@@ -37,23 +37,23 @@ type (
 	}
 
 	OamUser struct {
-		Id             int64          `db:"id"`               // 编号
-		Name           string         `db:"name"`             // 用户名
-		NickName       sql.NullString `db:"nick_name"`        // 昵称
-		Avatar         sql.NullString `db:"avatar"`           // 头像
-		Password       sql.NullString `db:"password"`         // 密码
-		Email          sql.NullString `db:"email"`            // 邮箱
-		Mobile         sql.NullString `db:"mobile"`           // 手机号
-		Status         sql.NullInt64  `db:"status"`           // 状态  0：禁用   1：正常
-		DeptId         sql.NullInt64  `db:"dept_id"`          // 部门ID
-		CreateBy       sql.NullString `db:"create_by"`        // 创建人
-		CreateTime     sql.NullInt64  `db:"create_time"`      // 创建时间
-		LastUpdateBy   sql.NullString `db:"last_update_by"`   // 更新人
-		LastUpdateTime sql.NullInt64  `db:"last_update_time"` // 更新时间
-		DelFlag        int64          `db:"del_flag"`         // 是否删除  -1：已删除  0：正常
-		RoleId         sql.NullInt64  `db:"role_id"`          // 岗位Id
-		Sex            int64          `db:"sex"`              // 0男,1女
-		Age            int64          `db:"age"`              // 默认0
+		Id             int64  `db:"id"`               // 编号
+		Name           string `db:"name"`             // 用户名
+		NickName       string `db:"nick_name"`        // 昵称
+		Avatar         string `db:"avatar"`           // 头像
+		Password       string `db:"password"`         // 密码
+		Email          string `db:"email"`            // 邮箱
+		Mobile         string `db:"mobile"`           // 手机号
+		Status         int64  `db:"status"`           // 状态  0：禁用   1：正常
+		DeptId         int64  `db:"dept_id"`          // 部门ID
+		CreateBy       string `db:"create_by"`        // 创建人
+		CreateTime     int64  `db:"create_time"`      // 创建时间
+		LastUpdateBy   string `db:"last_update_by"`   // 更新人
+		LastUpdateTime int64  `db:"last_update_time"` // 更新时间
+		DelFlag        int64  `db:"del_flag"`         // 是否删除  -1：已删除  0：正常
+		RoleId         int64  `db:"role_id"`          // 岗位Id
+		Sex            int64  `db:"sex"`              // 0男,1女
+		Age            int64  `db:"age"`              // 默认0
 	}
 )
 

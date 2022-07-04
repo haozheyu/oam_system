@@ -1,6 +1,7 @@
 package user
 
 import (
+	"github.com/haozheyu/oam_system/admin-api/internal/config"
 	"net/http"
 
 	"github.com/haozheyu/oam_system/admin-api/internal/logic/user"

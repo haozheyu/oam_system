@@ -5,6 +5,8 @@ import (
 	"net/http"
 
 	user "github.com/haozheyu/oam_system/admin-api/internal/handler/user"
+	userdept "github.com/haozheyu/oam_system/admin-api/internal/handler/user/dept"
+	userrole "github.com/haozheyu/oam_system/admin-api/internal/handler/user/role"
 	"github.com/haozheyu/oam_system/admin-api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
@@ -61,5 +63,59 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: user.UserLoginHandler(serverCtx),
 			},
 		},
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/add",
+				Handler: userdept.AddDeptHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: userdept.ListDeptHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/update",
+				Handler: userdept.UpdateDeptHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete",
+				Handler: userdept.DeleteDeptHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/user/dept"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/add",
+				Handler: userrole.AddRoleHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: userrole.ListRoleHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/update",
+				Handler: userrole.UpdateRoleHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete",
+				Handler: userrole.DeleteRoleHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/user/role"),
 	)
 }

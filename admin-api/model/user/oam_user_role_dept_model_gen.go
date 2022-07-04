@@ -35,13 +35,13 @@ type (
 	}
 
 	OamUserRoleDept struct {
-		Id             int64          `db:"id"`               // 编号
-		RoleId         sql.NullInt64  `db:"role_id"`          // 角色ID
-		DeptId         sql.NullInt64  `db:"dept_id"`          // 部门ID
-		CreateBy       sql.NullString `db:"create_by"`        // 创建人
-		CreateTime     sql.NullInt64  `db:"create_time"`      // 创建时间
-		LastUpdateBy   sql.NullString `db:"last_update_by"`   // 更新人
-		LastUpdateTime sql.NullInt64  `db:"last_update_time"` // 更新时间
+		Id             int64  `db:"id"`               // 编号
+		RoleId         int64  `db:"role_id"`          // 角色ID
+		DeptId         int64  `db:"dept_id"`          // 部门ID
+		CreateBy       string `db:"create_by"`        // 创建人
+		CreateTime     int64  `db:"create_time"`      // 创建时间
+		LastUpdateBy   string `db:"last_update_by"`   // 更新人
+		LastUpdateTime int64  `db:"last_update_time"` // 更新时间
 	}
 )
 

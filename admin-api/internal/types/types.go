@@ -133,3 +133,92 @@ type ReSetPasswordReq struct {
 type ReSetPasswordResp struct {
 	Message string `json:"message"`
 }
+
+type AddDeptReq struct {
+	Name string `json:"name"` // 机构名称
+}
+
+type AddDeptResp struct {
+	Message string `json:"message"`
+}
+
+type ListDeptReq struct {
+}
+
+type ListDeptData struct {
+	Id             int64  `json:"id"`             // 编号
+	Name           string `json:"name"`           // 机构名称
+	CreateBy       string `json:"createBy"`       // 创建人
+	CreateTime     string `json:"createTime"`     // 创建时间
+	LastUpdateBy   string `json:"lastUpdateBy"`   // 更新人
+	LastUpdateTime string `json:"lastUpdateTime"` // 更新时间
+	DelFlag        int64  `json:"delFlag"`        // 是否删除  -1：已删除  0：正常
+}
+
+type ListDeptResp struct {
+	Message string         `json:"message"`
+	Data    []ListDeptData `json:"data"`
+	Total   int64          `json:"total"`
+}
+
+type UpdateDeptReq struct {
+	Id   int64  `json:"id"`   // 编号
+	Name string `json:"name"` // 机构名称
+}
+
+type UpdateDeptResp struct {
+	Message string `json:"message"`
+}
+
+type DeleteDeptReq struct {
+	Id int64 `json:"id"`
+}
+
+type DeleteDeptResp struct {
+	Message string `json:"message"`
+}
+
+type AddRoleReq struct {
+	Name string `json:"name"`
+}
+
+type AddRoleResp struct {
+	Message string `json:"message"`
+}
+
+type ListRoleReq struct {
+}
+
+type ListRoleData struct {
+	Id             int64  `json:"id"` // 编号
+	Name           string `json:"name"`
+	RoleType       int64  `json:"roleType"`       // 机构名称
+	CreateBy       string `json:"createBy"`       // 创建人
+	CreateTime     string `json:"createTime"`     // 创建时间
+	LastUpdateBy   string `json:"lastUpdateBy"`   // 更新人
+	LastUpdateTime string `json:"lastUpdateTime"` // 更新时间
+	DelFlag        int64  `json:"delFlag"`        // 是否删除  -1：已删除  0：正常
+}
+
+type ListRoleResp struct {
+	Message string         `json:"message"`
+	Data    []ListRoleData `json:"data"`
+	Total   int64          `json:"total"`
+}
+
+type UpdateRoleReq struct {
+	Id   int64  `json:"id"`   // 编号
+	Name string `json:"name"` // 角色名称
+}
+
+type UpdateRoleResp struct {
+	Message string `json:"message"`
+}
+
+type DeleteRoleReq struct {
+	Id int64 `json:"id"`
+}
+
+type DeleteRoleResp struct {
+	Message string `json:"message"`
+}
