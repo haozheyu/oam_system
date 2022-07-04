@@ -1,0 +1,178 @@
+syntax = "v1"
+
+info(
+    desc: "用户相关"
+    author: "haozheyu"
+    email: "1216108213@qq.com"
+)
+
+type (
+    loginReq struct {
+        UserName string `json:"userName"`
+        Password string `json:"password"`
+    }
+    loginResp struct {
+        Message string `json:"message"`
+        UserName string `json:"userName"`
+        RoleName string  `json:"roleName"`
+        DeptName string  `json:"deptName"`
+        AccessToken string `json:"token"`
+        AccessExpire int64 `json:"accessExpire"`
+        RefreshAfter int64 `json:"refreshAfter"`
+    }
+
+    userInfoReq struct {
+       UserName string `json:"userName"`
+    }
+
+    userInfoResp struct {
+        Name           string         `json:"name"`             // 用户名
+        NickName       string `json:"nick_name"`        // 昵称
+        Avatar         string `json:"avatar"`           // 头像
+        Password       string `json:"password"`         // 密码
+        Email          string `json:"email"`            // 邮箱
+        Mobile         string `json:"mobile"`           // 手机号
+        Status         int64  `json:"status"`           // 状态  0：禁用   1：正常
+        DeptId         int64  `json:"dept_id"`          // 部门ID
+        CreateBy       string `json:"create_by"`        // 创建人
+        CreateTime     int64  `json:"create_time"`      // 创建时间
+        LastUpdateBy   string `json:"last_update_by"`   // 更新人
+        LastUpdateTime int64  `json:"last_update_time"` // 更新时间
+        DelFlag        int64          `json:"del_flag"`         // 是否删除  -1：已删除  0：正常
+        RoleId         int64  `json:"role_id"`          // 岗位Id
+        Sex            int64          `json:"sex"`              // 0男,1女
+        Age            int64          `json:"age"`              // 默认0
+    }
+
+    addUserReq struct {
+        Email string `json:"email"`
+        Mobile string `json:"mobile,optional"`
+        Name string `json:"name"`
+        NickName string `json:"nickName,optional"`
+        DeptId int64 `json:"deptId"`
+        RoleId int64 `json:"roleId"`
+        Avatar string `json:"avatar,optional"`
+        Password string `json:"password"`
+        LastUpdateBy string `json:"lastUpdateBy"`
+        LastUpdateTime int64 `json:"lastUpdateTime"`
+
+    }
+    addUserResp struct {
+        Message string `json:"message"`
+    }
+
+    ListUserReq struct {
+        Current int64 `json:"current,default=1"`
+        PageSize int64 `json:"pageSize,default=20"`
+    }
+
+    ListUserData struct {
+        Id int64 `json:"id"`                               // 编号
+        Name           string         `json:"name"`             // 用户名
+        NickName       string `json:"nick_name"`        // 昵称
+        Avatar         string `json:"avatar"`           // 头像
+        Password       string `json:"password"`         // 密码
+        Email          string `json:"email"`            // 邮箱
+        Mobile         string `json:"mobile"`           // 手机号
+        Status         int64  `json:"status"`           // 状态  0：禁用   1：正常
+        DeptId         int64  `json:"dept_id"`          // 部门ID
+        CreateBy       string `json:"create_by"`        // 创建人
+        CreateTime     int64  `json:"create_time"`      // 创建时间
+        LastUpdateBy   string `json:"last_update_by"`   // 更新人
+        LastUpdateTime int64  `json:"last_update_time"` // 更新时间
+        DelFlag        int64          `json:"del_flag"`         // 是否删除  -1：已删除  0：正常
+        RoleId         int64  `json:"role_id"`          // 岗位Id
+        Sex            int64          `json:"sex"`              // 0男,1女
+        Age            int64          `json:"age"`              // 默认0
+        DeptName       string `json:"deptName"`
+        RoleName       string `json:"roleName"`
+    }
+    ListUserResp struct {
+        page int64 `json:"page,default=1"`
+        Data []ListUserData `json:"data"`
+        PageSize int64 `json:"pageSize,default=20"`
+        Total int64 `json:"total"`
+    }
+    UpdateUserReq struct {
+        Email string `json:"email"`
+        Mobile string `json:"mobile"`
+        NickName string `json:"nickName"`
+        DeptId int64 `json:"deptId"`
+        RoleId int64 `json:"roleId"`
+        status int64 `json:"status"`
+    }
+    UpdateUserResp struct {
+        Message string `json:"message"`
+    }
+    EditUserReq struct {
+        UserName string `json:"userName"`
+        Email string `json:"email"`
+        Mobile string `json:"mobile"`
+        NickName string `json:"nickName"`
+        DeptId int64 `json:"deptId"`
+        RoleId int64 `json:"roleId"`
+        status int64 `json:"status"`
+    }
+    EditUserResp struct {
+        Message string `json:"message"`
+    }
+
+    DeleteUserReq struct {
+        UserName string `json:"userName"`
+    }
+    DeleteUserResp struct {
+        Message string `json:"message"`
+    }
+    ReSetPasswordReq struct {
+        userName string `json:"userName"`
+        Password string  `json:"password"`
+    }
+    ReSetPasswordResp struct {
+        Message string `json:"message"`
+    }
+)
+
+
+@server(
+    jwt: Auth
+    group: user
+    prefix: /api/user
+)
+service admin-api {
+    @doc " 用户详情"
+    @handler UserInfo
+    post /userInfo (userInfoReq) returns (userInfoResp)
+
+    @doc " 添加用户"
+    @handler UserAdd
+    post /add (addUserReq) returns (addUserResp)
+
+    @doc " 用户列表"
+    @handler UserList
+    post /list (ListUserReq) returns (ListUserResp)
+
+    @doc " 用户更新"
+    @handler UserUpdate
+    post /update (UpdateUserReq) returns (UpdateUserResp)
+
+    @doc " 删除用户"
+    @handler UserDelete
+    post /delete (DeleteUserReq) returns (DeleteUserResp)
+
+    @doc " 重置密码"
+    @handler ReSetPassword
+    post /reSetPassword (ReSetPasswordReq) returns (ReSetPasswordResp)
+
+    @doc " 编辑用户"
+    @handler EditUser
+    post /UpdateUserStatus (EditUserReq) returns (EditUserResp)
+}
+
+@server(
+    group: user
+)
+service admin-api {
+    @doc " 用户登录"
+    @handler UserLogin
+    post /api/user/login (loginReq) returns (loginResp)
+}

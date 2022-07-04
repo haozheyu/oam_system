@@ -1,0 +1,65 @@
+syntax = "v1"
+
+info(
+    desc: "部门信息"
+    author: "haozheyu"
+    email: "1216108213@qq.com"
+)
+
+type (
+    addDeptReq struct {
+        Name string `json:"name"`                                  // 机构名称
+    }
+    addDeptResp struct {
+        Message string `json:"message"`
+    }
+    ListDeptReq struct {
+    }
+    ListDeptData struct {
+        Id int64 `json:"id"`                               // 编号
+        Name string `json:"name"`                          // 机构名称
+        CreateBy string `json:"createBy"`                  // 创建人
+        CreateTime string `json:"createTime"`              // 创建时间
+        LastUpdateBy string `json:"lastUpdateBy"`          // 更新人
+        LastUpdateTime string `json:"lastUpdateTime"`      // 更新时间
+        DelFlag int64 `json:"delFlag"`                     // 是否删除  -1：已删除  0：正常
+    }
+    ListDeptResp struct {
+        Message string `json:"message"`
+        Data []ListDeptData `json:"data"`
+        Total int64 `json:"total"`
+    }
+    UpdateDeptReq struct {
+        Id int64 `json:"id"`                               // 编号
+        Name string `json:"name"`                          // 机构名称
+    }
+    UpdateDeptResp struct {
+        Message string `json:"message"`
+    }
+    DeleteDeptReq struct {
+        Id int64 `json:"id"`
+    }
+    DeleteDeptResp struct {
+        Message string `json:"message"`
+    }
+)
+
+
+@server(
+    jwt: Auth
+    group: user/dept
+    prefix: /api/user/dept
+)
+service admin-api {
+    @handler AddDept
+    post /add (addDeptReq) returns (addDeptResp)
+
+    @handler ListDept
+    post /list (ListDeptReq) returns (ListDeptResp)
+
+    @handler UpdateDept
+    post /update (UpdateDeptReq) returns (UpdateDeptResp)
+
+    @handler DeleteDept
+    post /delete (DeleteDeptReq) returns (DeleteDeptResp)
+}
