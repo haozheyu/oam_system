@@ -1,0 +1,1321 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "",
+    "description": "OAM SYSTEM",
+    "version": ""
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/user/UpdateUserStatus": {
+      "post": {
+        "summary": " 编辑用户",
+        "operationId": "EditUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/EditUserResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EditUserReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/api/user/add": {
+      "post": {
+        "summary": " 添加用户",
+        "operationId": "UserAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/addUserResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addUserReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/api/user/delete": {
+      "post": {
+        "summary": " 删除用户",
+        "operationId": "UserDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteUserResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteUserReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/api/user/dept/add": {
+      "post": {
+        "operationId": "AddDept",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/addDeptResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addDeptReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user/dept"
+        ]
+      }
+    },
+    "/api/user/dept/delete": {
+      "post": {
+        "operationId": "DeleteDept",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteDeptResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteDeptReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user/dept"
+        ]
+      }
+    },
+    "/api/user/dept/list": {
+      "post": {
+        "operationId": "ListDept",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListDeptResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListDeptReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user/dept"
+        ]
+      }
+    },
+    "/api/user/dept/update": {
+      "post": {
+        "operationId": "UpdateDept",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateDeptResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateDeptReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user/dept"
+        ]
+      }
+    },
+    "/api/user/list": {
+      "post": {
+        "summary": " 用户列表",
+        "operationId": "UserList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListUserResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListUserReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "summary": " 用户登录",
+        "operationId": "UserLogin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/loginResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/loginReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/api/user/reSetPassword": {
+      "post": {
+        "summary": " 重置密码",
+        "operationId": "ReSetPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ReSetPasswordResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReSetPasswordReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/api/user/role/add": {
+      "post": {
+        "operationId": "AddRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/addRoleResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addRoleReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user/role"
+        ]
+      }
+    },
+    "/api/user/role/delete": {
+      "post": {
+        "operationId": "DeleteRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteRoleResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteRoleReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user/role"
+        ]
+      }
+    },
+    "/api/user/role/list": {
+      "post": {
+        "operationId": "ListRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListRoleResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListRoleReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user/role"
+        ]
+      }
+    },
+    "/api/user/role/update": {
+      "post": {
+        "operationId": "UpdateRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateRoleResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateRoleReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user/role"
+        ]
+      }
+    },
+    "/api/user/update": {
+      "post": {
+        "summary": " 用户更新",
+        "operationId": "UserUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateUserResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUserReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/api/user/userInfo": {
+      "post": {
+        "summary": " 用户详情",
+        "operationId": "UserInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userInfoResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userInfoReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "DeleteDeptReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "DeleteDeptReq",
+      "required": [
+        "id"
+      ]
+    },
+    "DeleteDeptResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteDeptResp",
+      "required": [
+        "message"
+      ]
+    },
+    "DeleteRoleReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "DeleteRoleReq",
+      "required": [
+        "id"
+      ]
+    },
+    "DeleteRoleResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteRoleResp",
+      "required": [
+        "message"
+      ]
+    },
+    "DeleteUserReq": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteUserReq",
+      "required": [
+        "userName"
+      ]
+    },
+    "DeleteUserResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteUserResp",
+      "required": [
+        "message"
+      ]
+    },
+    "EditUserReq": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "nickName": {
+          "type": "string"
+        },
+        "deptId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "EditUserReq",
+      "required": [
+        "userName",
+        "email",
+        "mobile",
+        "nickName",
+        "deptId",
+        "roleId",
+        "status"
+      ]
+    },
+    "EditUserResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "EditUserResp",
+      "required": [
+        "message"
+      ]
+    },
+    "ListDeptData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "name": {
+          "type": "string",
+          "description": " 机构名称"
+        },
+        "createBy": {
+          "type": "string",
+          "description": " 创建人"
+        },
+        "createTime": {
+          "type": "string",
+          "description": " 创建时间"
+        },
+        "lastUpdateBy": {
+          "type": "string",
+          "description": " 更新人"
+        },
+        "lastUpdateTime": {
+          "type": "string",
+          "description": " 更新时间"
+        },
+        "delFlag": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 是否删除  -1：已删除  0：正常"
+        }
+      },
+      "title": "ListDeptData",
+      "required": [
+        "id",
+        "name",
+        "createBy",
+        "createTime",
+        "lastUpdateBy",
+        "lastUpdateTime",
+        "delFlag"
+      ]
+    },
+    "ListDeptReq": {
+      "type": "object",
+      "title": "ListDeptReq"
+    },
+    "ListDeptResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListDeptData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListDeptResp",
+      "required": [
+        "message",
+        "data",
+        "total"
+      ]
+    },
+    "ListRoleData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "name": {
+          "type": "string"
+        },
+        "roleType": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 机构名称"
+        },
+        "createBy": {
+          "type": "string",
+          "description": " 创建人"
+        },
+        "createTime": {
+          "type": "string",
+          "description": " 创建时间"
+        },
+        "lastUpdateBy": {
+          "type": "string",
+          "description": " 更新人"
+        },
+        "lastUpdateTime": {
+          "type": "string",
+          "description": " 更新时间"
+        },
+        "delFlag": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 是否删除  -1：已删除  0：正常"
+        }
+      },
+      "title": "ListRoleData",
+      "required": [
+        "id",
+        "name",
+        "roleType",
+        "createBy",
+        "createTime",
+        "lastUpdateBy",
+        "lastUpdateTime",
+        "delFlag"
+      ]
+    },
+    "ListRoleReq": {
+      "type": "object",
+      "title": "ListRoleReq"
+    },
+    "ListRoleResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListRoleData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListRoleResp",
+      "required": [
+        "message",
+        "data",
+        "total"
+      ]
+    },
+    "ListUserData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "name": {
+          "type": "string",
+          "description": " 用户名"
+        },
+        "nick_name": {
+          "type": "string",
+          "description": " 昵称"
+        },
+        "avatar": {
+          "type": "string",
+          "description": " 头像"
+        },
+        "password": {
+          "type": "string",
+          "description": " 密码"
+        },
+        "email": {
+          "type": "string",
+          "description": " 邮箱"
+        },
+        "mobile": {
+          "type": "string",
+          "description": " 手机号"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 状态  0：禁用   1：正常"
+        },
+        "dept_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 部门ID"
+        },
+        "create_by": {
+          "type": "string",
+          "description": " 创建人"
+        },
+        "create_time": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 创建时间"
+        },
+        "last_update_by": {
+          "type": "string",
+          "description": " 更新人"
+        },
+        "last_update_time": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 更新时间"
+        },
+        "del_flag": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 是否删除  -1：已删除  0：正常"
+        },
+        "role_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 岗位Id"
+        },
+        "sex": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 0男,1女"
+        },
+        "age": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 默认0"
+        },
+        "deptName": {
+          "type": "string"
+        },
+        "roleName": {
+          "type": "string"
+        }
+      },
+      "title": "ListUserData",
+      "required": [
+        "id",
+        "name",
+        "nick_name",
+        "avatar",
+        "password",
+        "email",
+        "mobile",
+        "status",
+        "dept_id",
+        "create_by",
+        "create_time",
+        "last_update_by",
+        "last_update_time",
+        "del_flag",
+        "role_id",
+        "sex",
+        "age",
+        "deptName",
+        "roleName"
+      ]
+    },
+    "ListUserReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "20"
+        }
+      },
+      "title": "ListUserReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListUserResp": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListUserData"
+          }
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "20"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListUserResp",
+      "required": [
+        "page",
+        "data",
+        "pageSize",
+        "total"
+      ]
+    },
+    "ReSetPasswordReq": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "title": "ReSetPasswordReq",
+      "required": [
+        "userName",
+        "password"
+      ]
+    },
+    "ReSetPasswordResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "ReSetPasswordResp",
+      "required": [
+        "message"
+      ]
+    },
+    "UpdateDeptReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "name": {
+          "type": "string",
+          "description": " 机构名称"
+        }
+      },
+      "title": "UpdateDeptReq",
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "UpdateDeptResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateDeptResp",
+      "required": [
+        "message"
+      ]
+    },
+    "UpdateRoleReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "name": {
+          "type": "string",
+          "description": " 角色名称"
+        }
+      },
+      "title": "UpdateRoleReq",
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "UpdateRoleResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateRoleResp",
+      "required": [
+        "message"
+      ]
+    },
+    "UpdateUserReq": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "nickName": {
+          "type": "string"
+        },
+        "deptId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "UpdateUserReq",
+      "required": [
+        "email",
+        "mobile",
+        "nickName",
+        "deptId",
+        "roleId",
+        "status"
+      ]
+    },
+    "UpdateUserResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateUserResp",
+      "required": [
+        "message"
+      ]
+    },
+    "addDeptReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": " 机构名称"
+        }
+      },
+      "title": "addDeptReq",
+      "required": [
+        "name"
+      ]
+    },
+    "addDeptResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "addDeptResp",
+      "required": [
+        "message"
+      ]
+    },
+    "addRoleReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "addRoleReq",
+      "required": [
+        "name"
+      ]
+    },
+    "addRoleResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "addRoleResp",
+      "required": [
+        "message"
+      ]
+    },
+    "addUserReq": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nickName": {
+          "type": "string"
+        },
+        "deptId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "lastUpdateBy": {
+          "type": "string"
+        },
+        "lastUpdateTime": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "addUserReq",
+      "required": [
+        "email",
+        "name",
+        "deptId",
+        "roleId",
+        "password",
+        "lastUpdateBy",
+        "lastUpdateTime"
+      ]
+    },
+    "addUserResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "addUserResp",
+      "required": [
+        "message"
+      ]
+    },
+    "loginReq": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "title": "loginReq",
+      "required": [
+        "userName",
+        "password"
+      ]
+    },
+    "loginResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "roleName": {
+          "type": "string"
+        },
+        "deptName": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "accessExpire": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "refreshAfter": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "loginResp",
+      "required": [
+        "message",
+        "userName",
+        "roleName",
+        "deptName",
+        "token",
+        "accessExpire",
+        "refreshAfter"
+      ]
+    },
+    "userInfoReq": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        }
+      },
+      "title": "userInfoReq",
+      "required": [
+        "userName"
+      ]
+    },
+    "userInfoResp": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": " 用户名"
+        },
+        "nick_name": {
+          "type": "string",
+          "description": " 昵称"
+        },
+        "avatar": {
+          "type": "string",
+          "description": " 头像"
+        },
+        "password": {
+          "type": "string",
+          "description": " 密码"
+        },
+        "email": {
+          "type": "string",
+          "description": " 邮箱"
+        },
+        "mobile": {
+          "type": "string",
+          "description": " 手机号"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 状态  0：禁用   1：正常"
+        },
+        "dept_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 部门ID"
+        },
+        "create_by": {
+          "type": "string",
+          "description": " 创建人"
+        },
+        "create_time": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 创建时间"
+        },
+        "last_update_by": {
+          "type": "string",
+          "description": " 更新人"
+        },
+        "last_update_time": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 更新时间"
+        },
+        "del_flag": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 是否删除  -1：已删除  0：正常"
+        },
+        "role_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 岗位Id"
+        },
+        "sex": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 0男,1女"
+        },
+        "age": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 默认0"
+        }
+      },
+      "title": "userInfoResp",
+      "required": [
+        "name",
+        "nick_name",
+        "avatar",
+        "password",
+        "email",
+        "mobile",
+        "status",
+        "dept_id",
+        "create_by",
+        "create_time",
+        "last_update_by",
+        "last_update_time",
+        "del_flag",
+        "role_id",
+        "sex",
+        "age"
+      ]
+    }
+  },
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "description": "Enter JWT Bearer token **_only_**",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "apiKey": []
+    }
+  ]
+}

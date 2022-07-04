@@ -56,6 +56,8 @@ func (l *UserLoginLogic) UserLogin(req *types.LoginReq) (resp *types.LoginResp, 
 		return &types.LoginResp{
 			Message:      "成功",
 			UserName:     userInfo.Name,
+			RoleName:     roleDetails.Name,
+			DeptName:     deptDetails.Name,
 			AccessToken:  jwtToken,
 			AccessExpire: now + accessExpire,
 			RefreshAfter: now + accessExpire/2,

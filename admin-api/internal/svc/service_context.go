@@ -1,8 +1,10 @@
 package svc
 
 import (
+	"github.com/go-redis/redis/v8"
 	"github.com/haozheyu/oam_system/admin-api/internal/config"
 	"github.com/haozheyu/oam_system/admin-api/model/user"
+	"github.com/zeromicro/go-zero/core/stores/sqlx"
 )
 
 type ServiceContext struct {
@@ -15,7 +17,13 @@ type ServiceContext struct {
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
+	conn := sqlx.NewMysql(c.Mysql.Datasource)
 	return &ServiceContext{
-		Config: c,
+		Config:            c,
+		RDB:               user.InitRedis(c),
+		UserModel:         user.NewOamUserModel(conn),
+		UserDeptModel:     user.NewOamUserDeptModel(conn),
+		UserRoleModel:     user.NewOamUserRoleModel(conn),
+		UserRoleDeptModel: user.NewOamUserRoleDeptModel(conn),
 	}
 }
