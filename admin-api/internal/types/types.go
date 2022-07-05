@@ -24,7 +24,6 @@ type UserInfoResp struct {
 	Name           string `json:"name"`             // 用户名
 	NickName       string `json:"nick_name"`        // 昵称
 	Avatar         string `json:"avatar"`           // 头像
-	Password       string `json:"password"`         // 密码
 	Email          string `json:"email"`            // 邮箱
 	Mobile         string `json:"mobile"`           // 手机号
 	Status         int64  `json:"status"`           // 状态  0：禁用   1：正常
@@ -33,10 +32,11 @@ type UserInfoResp struct {
 	CreateTime     int64  `json:"create_time"`      // 创建时间
 	LastUpdateBy   string `json:"last_update_by"`   // 更新人
 	LastUpdateTime int64  `json:"last_update_time"` // 更新时间
-	DelFlag        int64  `json:"del_flag"`         // 是否删除  -1：已删除  0：正常
 	RoleId         int64  `json:"role_id"`          // 岗位Id
 	Sex            int64  `json:"sex"`              // 0男,1女
 	Age            int64  `json:"age"`              // 默认0
+	DeptName       string `json:"dept_name"`
+	RoleName       string `json:"role_name"`
 }
 
 type AddUserReq struct {
@@ -50,6 +50,8 @@ type AddUserReq struct {
 	Password       string `json:"password"`
 	LastUpdateBy   string `json:"lastUpdateBy"`
 	LastUpdateTime int64  `json:"lastUpdateTime"`
+	Sex            int64  `json:"sex"`
+	Age            int64  `json:"age"`
 }
 
 type AddUserResp struct {
@@ -97,6 +99,8 @@ type UpdateUserReq struct {
 	DeptId   int64  `json:"deptId"`
 	RoleId   int64  `json:"roleId"`
 	Status   int64  `json:"status"`
+	Sex      int64  `json:"sex"`
+	Age      int64  `json:"age"`
 }
 
 type UpdateUserResp struct {
@@ -111,6 +115,8 @@ type EditUserReq struct {
 	DeptId   int64  `json:"deptId"`
 	RoleId   int64  `json:"roleId"`
 	Status   int64  `json:"status"`
+	Sex      int64  `json:"sex"`
+	Age      int64  `json:"age"`
 }
 
 type EditUserResp struct {

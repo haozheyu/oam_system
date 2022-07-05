@@ -34,6 +34,11 @@ func (l *UserLoginLogic) UserLogin(req *types.LoginReq) (resp *types.LoginResp, 
 
 	switch err {
 	case nil:
+		if userInfo.Status == 0 {
+			logx.WithContext(l.ctx).Errorf("用户已禁用,参数:%s", req.UserName)
+			return nil, errors.New("用户已禁用, 需要开启请联系管理员")
+		}
+
 		if userInfo.Password != config.Md5(req.Password) {
 			logx.WithContext(l.ctx).Errorf("用户密码不正确,参数:%s", req.Password)
 			return nil, errors.New("用户密码不正确")
@@ -69,8 +74,6 @@ func (l *UserLoginLogic) UserLogin(req *types.LoginReq) (resp *types.LoginResp, 
 		logx.WithContext(l.ctx).Errorf("用户登录失败,参数:%s,异常:%s", req.UserName, err.Error())
 		return nil, err
 	}
-
-	return
 }
 
 func (l *UserLoginLogic) getJwtToken(secretKey string, iat, seconds, userId int64, name string, deptname string, rolename string) (string, error) {

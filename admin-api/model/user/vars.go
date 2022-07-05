@@ -15,3 +15,6 @@ func InitRedis(c config.Config) *redis.Client {
 		DB:       0,            // use default DB
 	})
 }
+
+var UserStatusDisable int64 = 0
+var UserStatusEnable int64 = 1
