@@ -22,18 +22,6 @@ const DASHBOARD: AppRouteRecordRaw = {
         roles: ['*'],
       },
     },
-    /** simple */
-    {
-      path: 'monitor',
-      name: 'Monitor',
-      component: () => import('@/views/dashboard/monitor/index.vue'),
-      meta: {
-        locale: 'menu.dashboard.monitor',
-        requiresAuth: true,
-        roles: ['admin'],
-      },
-    },
-    /** simple end */
   ],
 };
 
