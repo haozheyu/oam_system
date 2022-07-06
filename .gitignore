@@ -9,6 +9,11 @@
 *.sh
 admin-ui/node_modules
 admin-ui/dist
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
 
 # Test binary, built with `go test -c`
 *.test
