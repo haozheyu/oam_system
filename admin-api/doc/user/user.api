@@ -136,6 +136,12 @@ type (
     ReSetPasswordResp struct {
         Message string `json:"message"`
     }
+
+    RefreshAuthorizationReq {}
+    RefreshAuthorizationResp {
+        Token        string `json:"token"`
+        RefreshToken string `json:"refresh_token"`
+    }
 )
 
 
@@ -181,4 +187,5 @@ service admin-api {
     @doc " 用户登录"
     @handler UserLogin
     post /api/user/login (loginReq) returns (loginResp)
+
 }

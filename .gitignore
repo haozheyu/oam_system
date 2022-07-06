@@ -7,6 +7,8 @@
 *.yaml
 .idea
 *.sh
+admin-ui/node_modules
+admin-ui/dist
 
 # Test binary, built with `go test -c`
 *.test
