@@ -16,6 +16,202 @@
     "application/json"
   ],
   "paths": {
+    "/api/nav/add_body": {
+      "post": {
+        "summary": "添加导航标题内容",
+        "operationId": "AddBodyName",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddBodyNameResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddBodyNameReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "nav"
+        ]
+      }
+    },
+    "/api/nav/add_top": {
+      "post": {
+        "summary": "添加导航标题",
+        "operationId": "AddTopName",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddTopNameResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddTopNameReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "nav"
+        ]
+      }
+    },
+    "/api/nav/delete_body": {
+      "post": {
+        "summary": "删除导航标题内容",
+        "operationId": "DeleteBodyName",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteBodyNameResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteBodyNameReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "nav"
+        ]
+      }
+    },
+    "/api/nav/delete_top": {
+      "post": {
+        "summary": "删除导航标题",
+        "operationId": "DeleteTopName",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteTopNameResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteTopNameReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "nav"
+        ]
+      }
+    },
+    "/api/nav/list_body": {
+      "post": {
+        "summary": "导航标题内容列表",
+        "operationId": "ListBodyName",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListBodyNameResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListBodyNameReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "nav"
+        ]
+      }
+    },
+    "/api/nav/list_top": {
+      "post": {
+        "summary": "导航标题列表",
+        "operationId": "ListTopName",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListTopNameResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListTopNameReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "nav"
+        ]
+      }
+    },
+    "/api/nav/update": {
+      "post": {
+        "summary": "更新导航内容信息",
+        "operationId": "UpdateBodyName",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateBodyNameResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateBodyNameReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "nav"
+        ]
+      }
+    },
     "/api/user/UpdateUserStatus": {
       "post": {
         "summary": " 编辑用户",
@@ -458,6 +654,98 @@
     }
   },
   "definitions": {
+    "AddBodyNameReq": {
+      "type": "object",
+      "properties": {
+        "top_name": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 标题ID"
+        },
+        "link_addr": {
+          "type": "string",
+          "description": " 链接地址"
+        },
+        "link_name": {
+          "type": "string",
+          "description": " 链接名称"
+        },
+        "link_desc": {
+          "type": "string"
+        },
+        "link_icon": {
+          "type": "string"
+        }
+      },
+      "title": "AddBodyNameReq",
+      "required": [
+        "top_name",
+        "link_addr",
+        "link_name",
+        "link_desc",
+        "link_icon"
+      ]
+    },
+    "AddBodyNameResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "AddBodyNameResp",
+      "required": [
+        "message"
+      ]
+    },
+    "AddTopNameReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "AddTopNameReq",
+      "required": [
+        "name"
+      ]
+    },
+    "AddTopNameResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "AddTopNameResp",
+      "required": [
+        "message"
+      ]
+    },
+    "DeleteBodyNameReq": {
+      "type": "object",
+      "properties": {
+        "link_name": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteBodyNameReq",
+      "required": [
+        "link_name"
+      ]
+    },
+    "DeleteBodyNameResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteBodyNameResp",
+      "required": [
+        "message"
+      ]
+    },
     "DeleteDeptReq": {
       "type": "object",
       "properties": {
@@ -504,6 +792,30 @@
         }
       },
       "title": "DeleteRoleResp",
+      "required": [
+        "message"
+      ]
+    },
+    "DeleteTopNameReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteTopNameReq",
+      "required": [
+        "name"
+      ]
+    },
+    "DeleteTopNameResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteTopNameResp",
       "required": [
         "message"
       ]
@@ -558,6 +870,14 @@
         "status": {
           "type": "integer",
           "format": "int64"
+        },
+        "sex": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "age": {
+          "type": "integer",
+          "format": "int64"
         }
       },
       "title": "EditUserReq",
@@ -568,7 +888,9 @@
         "nickName",
         "deptId",
         "roleId",
-        "status"
+        "status",
+        "sex",
+        "age"
       ]
     },
     "EditUserResp": {
@@ -581,6 +903,85 @@
       "title": "EditUserResp",
       "required": [
         "message"
+      ]
+    },
+    "ListBodyNameData": {
+      "type": "object",
+      "properties": {
+        "top_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 标题ID"
+        },
+        "link_addr": {
+          "type": "string",
+          "description": " 链接地址"
+        },
+        "link_name": {
+          "type": "string",
+          "description": " 链接名称"
+        },
+        "link_desc": {
+          "type": "string",
+          "description": " 链接描述"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 状态"
+        },
+        "link_icon": {
+          "type": "string",
+          "description": " 链接icon"
+        },
+        "create_time": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 创建时间"
+        },
+        "create_by": {
+          "type": "string",
+          "description": " 创建人                            机构名称"
+        }
+      },
+      "title": "ListBodyNameData",
+      "required": [
+        "top_id",
+        "link_addr",
+        "link_name",
+        "link_desc",
+        "status",
+        "link_icon",
+        "create_time",
+        "create_by"
+      ]
+    },
+    "ListBodyNameReq": {
+      "type": "object",
+      "title": "ListBodyNameReq"
+    },
+    "ListBodyNameResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListBodyNameData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListBodyNameResp",
+      "required": [
+        "message",
+        "data",
+        "total"
       ]
     },
     "ListDeptData": {
@@ -728,6 +1129,64 @@
         }
       },
       "title": "ListRoleResp",
+      "required": [
+        "message",
+        "data",
+        "total"
+      ]
+    },
+    "ListTopNameData": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": " 名称"
+        },
+        "create_time": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 创建时间"
+        },
+        "create_by": {
+          "type": "string",
+          "description": " 创建人"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 状态                                 机构名称"
+        }
+      },
+      "title": "ListTopNameData",
+      "required": [
+        "name",
+        "create_time",
+        "create_by",
+        "status"
+      ]
+    },
+    "ListTopNameReq": {
+      "type": "object",
+      "title": "ListTopNameReq"
+    },
+    "ListTopNameResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListTopNameData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListTopNameResp",
       "required": [
         "message",
         "data",
@@ -924,6 +1383,65 @@
         "message"
       ]
     },
+    "RefreshAuthorizationReq": {
+      "type": "object",
+      "title": "RefreshAuthorizationReq"
+    },
+    "RefreshAuthorizationResp": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "refresh_token": {
+          "type": "string"
+        }
+      },
+      "title": "RefreshAuthorizationResp",
+      "required": [
+        "token",
+        "refresh_token"
+      ]
+    },
+    "UpdateBodyNameReq": {
+      "type": "object",
+      "properties": {
+        "link_addr": {
+          "type": "string",
+          "description": " 链接地址"
+        },
+        "link_name": {
+          "type": "string",
+          "description": " 链接名称"
+        },
+        "link_desc": {
+          "type": "string"
+        },
+        "link_icon": {
+          "type": "string",
+          "description": " 机构名称"
+        }
+      },
+      "title": "UpdateBodyNameReq",
+      "required": [
+        "link_addr",
+        "link_name",
+        "link_desc",
+        "link_icon"
+      ]
+    },
+    "UpdateBodyNameResp": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateBodyNameResp",
+      "required": [
+        "message"
+      ]
+    },
     "UpdateDeptReq": {
       "type": "object",
       "properties": {
@@ -1009,6 +1527,14 @@
         "status": {
           "type": "integer",
           "format": "int64"
+        },
+        "sex": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "age": {
+          "type": "integer",
+          "format": "int64"
         }
       },
       "title": "UpdateUserReq",
@@ -1018,7 +1544,9 @@
         "nickName",
         "deptId",
         "roleId",
-        "status"
+        "status",
+        "sex",
+        "age"
       ]
     },
     "UpdateUserResp": {
@@ -1117,6 +1645,14 @@
         "lastUpdateTime": {
           "type": "integer",
           "format": "int64"
+        },
+        "sex": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "age": {
+          "type": "integer",
+          "format": "int64"
         }
       },
       "title": "addUserReq",
@@ -1127,7 +1663,9 @@
         "roleId",
         "password",
         "lastUpdateBy",
-        "lastUpdateTime"
+        "lastUpdateTime",
+        "sex",
+        "age"
       ]
     },
     "addUserResp": {
@@ -1223,10 +1761,6 @@
           "type": "string",
           "description": " 头像"
         },
-        "password": {
-          "type": "string",
-          "description": " 密码"
-        },
         "email": {
           "type": "string",
           "description": " 邮箱"
@@ -1263,11 +1797,6 @@
           "format": "int64",
           "description": " 更新时间"
         },
-        "del_flag": {
-          "type": "integer",
-          "format": "int64",
-          "description": " 是否删除  -1：已删除  0：正常"
-        },
         "role_id": {
           "type": "integer",
           "format": "int64",
@@ -1282,6 +1811,12 @@
           "type": "integer",
           "format": "int64",
           "description": " 默认0"
+        },
+        "dept_name": {
+          "type": "string"
+        },
+        "role_name": {
+          "type": "string"
         }
       },
       "title": "userInfoResp",
@@ -1289,7 +1824,6 @@
         "name",
         "nick_name",
         "avatar",
-        "password",
         "email",
         "mobile",
         "status",
@@ -1298,10 +1832,11 @@
         "create_time",
         "last_update_by",
         "last_update_time",
-        "del_flag",
         "role_id",
         "sex",
-        "age"
+        "age",
+        "dept_name",
+        "role_name"
       ]
     }
   },

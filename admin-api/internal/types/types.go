@@ -255,6 +255,7 @@ type ListTopNameResp struct {
 
 type ListBodyNameData struct {
 	TopId      int64  `json:"top_id"`      // 标题ID
+	TopName    string `json:"top_name"`    // 标题名称
 	LinkAddr   string `json:"link_addr"`   // 链接地址
 	LinkName   string `json:"link_name"`   // 链接名称
 	LinkDesc   string `json:"link_desc"`   // 链接描述
@@ -265,12 +266,16 @@ type ListBodyNameData struct {
 }
 
 type ListBodyNameReq struct {
+	Page     int64 `json:"page,default=1"`
+	PageSize int64 `json:"pageSize,default=20"`
 }
 
 type ListBodyNameResp struct {
-	Message string             `json:"message"`
-	Data    []ListBodyNameData `json:"data"`
-	Total   int64              `json:"total"`
+	Page     int64              `json:"page,default=1"`
+	PageSize int64              `json:"pageSize,default=20"`
+	Message  string             `json:"message"`
+	Data     []ListBodyNameData `json:"data"`
+	Total    int64              `json:"total"`
 }
 
 type AddTopNameReq struct {
@@ -282,11 +287,11 @@ type AddTopNameResp struct {
 }
 
 type AddBodyNameReq struct {
-	TopName  int64  `json:"top_name"`  // 标题ID
-	LinkAddr string `json:"link_addr"` // 链接地址
-	LinkName string `json:"link_name"` // 链接名称
-	LinkDesc string `json:"link_desc"` //
-	LinkIcon string `json:"link_icon"`
+	TopNameId int64  `json:"top_name_id"` // 标题ID
+	LinkAddr  string `json:"link_addr"`   // 链接地址
+	LinkName  string `json:"link_name"`   // 链接名称
+	LinkDesc  string `json:"link_desc"`   //
+	LinkIcon  string `json:"link_icon"`
 }
 
 type AddBodyNameResp struct {

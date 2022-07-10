@@ -3,6 +3,7 @@ package svc
 import (
 	"github.com/go-redis/redis/v8"
 	"github.com/haozheyu/oam_system/admin-api/internal/config"
+	"github.com/haozheyu/oam_system/admin-api/model/navigation"
 	"github.com/haozheyu/oam_system/admin-api/model/user"
 	"github.com/zeromicro/go-zero/core/stores/sqlx"
 )
@@ -14,6 +15,8 @@ type ServiceContext struct {
 	UserDeptModel     user.OamUserDeptModel
 	UserRoleModel     user.OamUserRoleModel
 	UserRoleDeptModel user.OamUserRoleDeptModel
+	NavTopModel       navigation.OamNavigationTopModel
+	NavBodyModel      navigation.OamNavigationBodyModel
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -25,5 +28,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		UserDeptModel:     user.NewOamUserDeptModel(conn),
 		UserRoleModel:     user.NewOamUserRoleModel(conn),
 		UserRoleDeptModel: user.NewOamUserRoleDeptModel(conn),
+		NavTopModel:       navigation.NewOamNavigationTopModel(conn),
+		NavBodyModel:      navigation.NewOamNavigationBodyModel(conn),
 	}
 }

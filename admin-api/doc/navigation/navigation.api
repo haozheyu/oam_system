@@ -25,6 +25,7 @@ type (
 
     ListBodyNameData struct {
         TopId      int64  `json:"top_id"`      // 标题ID
+        TopName    string  `json:"top_name"`  // 标题名称
         LinkAddr   string `json:"link_addr"`   // 链接地址
         LinkName   string `json:"link_name"`   // 链接名称
         LinkDesc   string `json:"link_desc"`   // 链接描述
@@ -33,8 +34,13 @@ type (
         CreateTime int64  `json:"create_time"` // 创建时间
         CreateBy   string `json:"create_by"`   // 创建人                           // 机构名称
     }
-    ListBodyNameReq struct {}
+    ListBodyNameReq struct {
+        page int64 `json:"page,default=1"`
+        PageSize int64 `json:"pageSize,default=20"`
+    }
     ListBodyNameResp struct {
+        Page int64 `json:"page,default=1"`
+        PageSize int64 `json:"pageSize,default=20"`
         Message string `json:"message"`
         Data []ListBodyNameData `json:"data"`
         Total int64 `json:"total"`
@@ -48,7 +54,7 @@ type (
     }
 
     AddBodyNameReq struct {
-        TopName    int64  `json:"top_name"`      // 标题ID
+        TopNameId    int64  `json:"top_name_id"`      // 标题ID
         LinkAddr   string `json:"link_addr"`   // 链接地址
         LinkName   string `json:"link_name"`   // 链接名称
         LinkDesc   string `json:"link_desc"`   //
