@@ -36,8 +36,8 @@ func (l *ListTopNameLogic) ListTopName(req *types.ListTopNameReq) (resp *types.L
 			return nil, errors.New("非系统管理员,不能添加导航")
 		}
 		builder := l.svcCtx.NavTopModel.RowBuilder()
-		page, _ := l.svcCtx.NavTopModel.FindPageListByPage(l.ctx, builder)
-		countBuilder := l.svcCtx.NavBodyModel.CountBuilder("*")
+		page, err := l.svcCtx.NavTopModel.FindPageListByPage(l.ctx, builder)
+		countBuilder := l.svcCtx.NavTopModel.CountBuilder("*")
 		count, _ := l.svcCtx.NavTopModel.FindCount(l.ctx, countBuilder)
 		var (
 			resp_data_item types.ListTopNameData
@@ -45,7 +45,7 @@ func (l *ListTopNameLogic) ListTopName(req *types.ListTopNameReq) (resp *types.L
 		)
 
 		for _, v := range page {
-			copier.Copy(resp_data_item, v)
+			copier.Copy(&resp_data_item, &v)
 			resp_data_list = append(resp_data_list, resp_data_item)
 		}
 		return &types.ListTopNameResp{Message: "ok", Data: resp_data_list, Total: count}, err

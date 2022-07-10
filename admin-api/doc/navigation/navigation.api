@@ -87,10 +87,24 @@ type (
     DeleteTopNameResp struct {
         Message string `json:"message"`
     }
+
+    GetTopBodyNameReq struct {
+        Name   string `json:"name"`
+        Page int64 `json:"page,default=1"`
+        PageSize int64 `json:"pageSize,default=20"`
+    }
+    GetTopBodyNameResp struct {
+        Page int64 `json:"page,default=1"`
+        PageSize int64 `json:"pageSize,default=20"`
+        Message string `json:"message"`
+        Data []ListBodyNameData `json:"data"`
+        Total int64 `json:"total"`
+    }
 )
 
 @server(
     group: nav
+    jwt: Auth
     prefix: /api/nav
 )
 service admin-api {
@@ -118,4 +132,8 @@ service admin-api {
     @doc "删除导航标题内容"
     @handler DeleteBodyName
     post /delete_body (DeleteBodyNameReq) returns (DeleteBodyNameResp)
+
+    @doc "获取标题的所有内容"
+    @handler GetTopBodyName
+    post /get_top_body (GetTopBodyNameReq) returns (GetTopBodyNameResp)
 }

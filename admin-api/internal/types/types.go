@@ -324,3 +324,17 @@ type DeleteTopNameReq struct {
 type DeleteTopNameResp struct {
 	Message string `json:"message"`
 }
+
+type GetTopBodyNameReq struct {
+	Name     string `json:"name"`
+	Page     int64  `json:"page,default=1"`
+	PageSize int64  `json:"pageSize,default=20"`
+}
+
+type GetTopBodyNameResp struct {
+	Page     int64              `json:"page,default=1"`
+	PageSize int64              `json:"pageSize,default=20"`
+	Message  string             `json:"message"`
+	Data     []ListBodyNameData `json:"data"`
+	Total    int64              `json:"total"`
+}

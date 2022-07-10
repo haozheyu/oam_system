@@ -157,7 +157,13 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/delete_body",
 				Handler: nav.DeleteBodyNameHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/get_top_body",
+				Handler: nav.GetTopBodyNameHandler(serverCtx),
+			},
 		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 		rest.WithPrefix("/api/nav"),
 	)
 }

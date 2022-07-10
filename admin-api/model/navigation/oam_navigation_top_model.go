@@ -41,7 +41,7 @@ func (m *defaultOamNavigationTopModel) RowBuilder() squirrel.SelectBuilder {
 
 // export logic
 func (m *defaultOamNavigationTopModel) CountBuilder(field string) squirrel.SelectBuilder {
-	return squirrel.Select("COUNT("+field+")").From(m.table).Where("status = ?", 1)
+	return squirrel.Select("COUNT(" + field + ")").From(m.table)
 }
 
 func (m *defaultOamNavigationTopModel) DeleteStatus(ctx context.Context, id int64) error {

@@ -13,21 +13,21 @@ import (
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type ListBodyNameLogic struct {
+type GetTopBodyNameLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 }
 
-func NewListBodyNameLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ListBodyNameLogic {
-	return &ListBodyNameLogic{
+func NewGetTopBodyNameLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetTopBodyNameLogic {
+	return &GetTopBodyNameLogic{
 		Logger: logx.WithContext(ctx),
 		ctx:    ctx,
 		svcCtx: svcCtx,
 	}
 }
 
-func (l *ListBodyNameLogic) ListBodyName(req *types.ListBodyNameReq) (resp *types.ListBodyNameResp, err error) {
+func (l *GetTopBodyNameLogic) GetTopBodyName(req *types.GetTopBodyNameReq) (resp *types.GetTopBodyNameResp, err error) {
 	userName := fmt.Sprintf("%s", l.ctx.Value("name"))
 	srcUser, err := l.svcCtx.UserModel.FindOneByName(l.ctx, userName)
 	fmt.Println(srcUser, userName)
@@ -36,9 +36,12 @@ func (l *ListBodyNameLogic) ListBodyName(req *types.ListBodyNameReq) (resp *type
 		if srcUser.RoleId != 1 {
 			return nil, errors.New("非系统管理员,不能添加导航")
 		}
-		builder := l.svcCtx.NavBodyModel.RowBuilder()
-		page, _ := l.svcCtx.NavBodyModel.FindPageListByPage(l.ctx, builder, req.Page, req.PageSize, "")
-		countBuilder := l.svcCtx.NavBodyModel.CountBuilder("*")
+		query, err := l.svcCtx.NavTopModel.FindOneByQuery(l.ctx, l.svcCtx.NavTopModel.RowBuilder().Where("name =?", req.Name))
+		if err != nil {
+			return nil, errors.New("改标题名称不存在")
+		}
+		page, _ := l.svcCtx.NavBodyModel.FindPageListByPage(l.ctx, l.svcCtx.NavBodyModel.RowBuilder().Where("top_id = ?", query.Id), req.Page, req.PageSize, "")
+		countBuilder := l.svcCtx.NavBodyModel.CountBuilder("*").Where("top_id = ?", query.Id)
 		count, _ := l.svcCtx.NavBodyModel.FindCount(l.ctx, countBuilder)
 		navTopLsit, _ := l.svcCtx.NavTopModel.FindPageListByPage(l.ctx, l.svcCtx.NavTopModel.RowBuilder())
 		var (
@@ -54,7 +57,7 @@ func (l *ListBodyNameLogic) ListBodyName(req *types.ListBodyNameReq) (resp *type
 				}
 			}
 		}
-		return &types.ListBodyNameResp{Message: "ok", Data: resp_data_list, Total: count, Page: req.Page, PageSize: req.PageSize}, err
+		return &types.GetTopBodyNameResp{Message: "ok", Data: resp_data_list, Total: count, Page: req.Page, PageSize: req.PageSize}, err
 
 	case sqlc.ErrNotFound:
 		logx.WithContext(l.ctx).Errorf("用户不存在,参数:%s,异常:%s", srcUser.Name, err.Error())

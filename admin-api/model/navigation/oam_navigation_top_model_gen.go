@@ -18,6 +18,7 @@ var (
 	oamNavigationTopFieldNames          = builder.RawFieldNames(&OamNavigationTop{})
 	oamNavigationTopRows                = strings.Join(oamNavigationTopFieldNames, ",")
 	oamNavigationTopRowsExpectAutoSet   = strings.Join(stringx.Remove(oamNavigationTopFieldNames, "`id`", "`create_time`", "`update_time`", "`create_at`", "`update_at`"), ",")
+	oamNavigationTopRowsRemoveId        = strings.Join(stringx.Remove(oamNavigationTopFieldNames, "`id`"), ",")
 	oamNavigationTopRowsWithPlaceHolder = strings.Join(stringx.Remove(oamNavigationTopFieldNames, "`id`", "`create_time`", "`update_time`", "`create_at`", "`update_at`"), "=?,") + "=?"
 )
 
@@ -71,8 +72,8 @@ func (m *defaultOamNavigationTopModel) FindOne(ctx context.Context, id int64) (*
 }
 
 func (m *defaultOamNavigationTopModel) Insert(ctx context.Context, data *OamNavigationTop) (sql.Result, error) {
-	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?)", m.table, oamNavigationTopRowsExpectAutoSet)
-	ret, err := m.conn.ExecCtx(ctx, query, data.Name, data.CreateBy, data.Status)
+	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?)", m.table, oamNavigationTopRowsRemoveId)
+	ret, err := m.conn.ExecCtx(ctx, query, data.Name, data.CreateTime, data.CreateBy, data.Status)
 	return ret, err
 }
 

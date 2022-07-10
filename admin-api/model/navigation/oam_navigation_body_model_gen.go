@@ -17,6 +17,7 @@ import (
 var (
 	oamNavigationBodyFieldNames          = builder.RawFieldNames(&OamNavigationBody{})
 	oamNavigationBodyRows                = strings.Join(oamNavigationBodyFieldNames, ",")
+	oamNavigationBodyRowsRemoveId        = strings.Join(stringx.Remove(oamNavigationBodyFieldNames, "`id`"), ",")
 	oamNavigationBodyRowsExpectAutoSet   = strings.Join(stringx.Remove(oamNavigationBodyFieldNames, "`id`", "`create_time`", "`update_time`", "`create_at`", "`update_at`"), ",")
 	oamNavigationBodyRowsWithPlaceHolder = strings.Join(stringx.Remove(oamNavigationBodyFieldNames, "`id`", "`create_time`", "`update_time`", "`create_at`", "`update_at`"), "=?,") + "=?"
 )
@@ -75,8 +76,8 @@ func (m *defaultOamNavigationBodyModel) FindOne(ctx context.Context, id int64) (
 }
 
 func (m *defaultOamNavigationBodyModel) Insert(ctx context.Context, data *OamNavigationBody) (sql.Result, error) {
-	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?, ?)", m.table, oamNavigationBodyRowsExpectAutoSet)
-	ret, err := m.conn.ExecCtx(ctx, query, data.TopId, data.LinkAddr, data.LinkName, data.LinkDesc, data.Status, data.LinkIcon, data.CreateBy)
+	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?, ?, ?)", m.table, oamNavigationBodyRowsRemoveId)
+	ret, err := m.conn.ExecCtx(ctx, query, data.TopId, data.LinkAddr, data.LinkName, data.LinkDesc, data.Status, data.LinkIcon, data.CreateTime, data.CreateBy)
 	return ret, err
 }
 
