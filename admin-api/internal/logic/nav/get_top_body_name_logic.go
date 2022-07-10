@@ -38,7 +38,7 @@ func (l *GetTopBodyNameLogic) GetTopBodyName(req *types.GetTopBodyNameReq) (resp
 		}
 		query, err := l.svcCtx.NavTopModel.FindOneByQuery(l.ctx, l.svcCtx.NavTopModel.RowBuilder().Where("name =?", req.Name))
 		if err != nil {
-			return nil, errors.New("改标题名称不存在")
+			return nil, errors.New("标题名称不存在")
 		}
 		page, _ := l.svcCtx.NavBodyModel.FindPageListByPage(l.ctx, l.svcCtx.NavBodyModel.RowBuilder().Where("top_id = ?", query.Id), req.Page, req.PageSize, "")
 		countBuilder := l.svcCtx.NavBodyModel.CountBuilder("*").Where("top_id = ?", query.Id)
