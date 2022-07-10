@@ -140,6 +140,14 @@ type ReSetPasswordResp struct {
 	Message string `json:"message"`
 }
 
+type RefreshAuthorizationReq struct {
+}
+
+type RefreshAuthorizationResp struct {
+	Token        string `json:"token"`
+	RefreshToken string `json:"refresh_token"`
+}
+
 type AddDeptReq struct {
 	Name string `json:"name"` // 机构名称
 }
@@ -226,5 +234,88 @@ type DeleteRoleReq struct {
 }
 
 type DeleteRoleResp struct {
+	Message string `json:"message"`
+}
+
+type ListTopNameData struct {
+	Name       string `json:"name"`        // 名称
+	CreateTime int64  `json:"create_time"` // 创建时间
+	CreateBy   string `json:"create_by"`   // 创建人
+	Status     int64  `json:"status"`      // 状态                                // 机构名称
+}
+
+type ListTopNameReq struct {
+}
+
+type ListTopNameResp struct {
+	Message string            `json:"message"`
+	Data    []ListTopNameData `json:"data"`
+	Total   int64             `json:"total"`
+}
+
+type ListBodyNameData struct {
+	TopId      int64  `json:"top_id"`      // 标题ID
+	LinkAddr   string `json:"link_addr"`   // 链接地址
+	LinkName   string `json:"link_name"`   // 链接名称
+	LinkDesc   string `json:"link_desc"`   // 链接描述
+	Status     int64  `json:"status"`      // 状态
+	LinkIcon   string `json:"link_icon"`   // 链接icon
+	CreateTime int64  `json:"create_time"` // 创建时间
+	CreateBy   string `json:"create_by"`   // 创建人                           // 机构名称
+}
+
+type ListBodyNameReq struct {
+}
+
+type ListBodyNameResp struct {
+	Message string             `json:"message"`
+	Data    []ListBodyNameData `json:"data"`
+	Total   int64              `json:"total"`
+}
+
+type AddTopNameReq struct {
+	Name string `json:"name"`
+}
+
+type AddTopNameResp struct {
+	Message string `json:"message"`
+}
+
+type AddBodyNameReq struct {
+	TopName  int64  `json:"top_name"`  // 标题ID
+	LinkAddr string `json:"link_addr"` // 链接地址
+	LinkName string `json:"link_name"` // 链接名称
+	LinkDesc string `json:"link_desc"` //
+	LinkIcon string `json:"link_icon"`
+}
+
+type AddBodyNameResp struct {
+	Message string `json:"message"`
+}
+
+type UpdateBodyNameReq struct {
+	LinkAddr string `json:"link_addr"` // 链接地址
+	LinkName string `json:"link_name"` // 链接名称
+	LinkDesc string `json:"link_desc"` //
+	LinkIcon string `json:"link_icon"` // 机构名称
+}
+
+type UpdateBodyNameResp struct {
+	Message string `json:"message"`
+}
+
+type DeleteBodyNameReq struct {
+	LinkName string `json:"link_name"`
+}
+
+type DeleteBodyNameResp struct {
+	Message string `json:"message"`
+}
+
+type DeleteTopNameReq struct {
+	Name string `json:"name"`
+}
+
+type DeleteTopNameResp struct {
 	Message string `json:"message"`
 }

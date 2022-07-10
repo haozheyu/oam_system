@@ -1,0 +1,115 @@
+syntax = "v1"
+
+info(
+    title: "导航接口"
+    desc: "导航接口文档"
+    author: "haozheyu"
+    email: "1216108213@qq.com"
+    version: "v1"
+)
+
+
+type (
+    ListTopNameData struct {
+        Name       string `json:"name"`        // 名称
+        CreateTime int64  `json:"create_time"` // 创建时间
+        CreateBy   string `json:"create_by"`   // 创建人
+        Status     int64  `json:"status"`      // 状态                                // 机构名称
+    }
+    ListTopNameReq struct {}
+    ListTopNameResp struct {
+        Message string `json:"message"`
+        Data []ListTopNameData `json:"data"`
+        Total int64 `json:"total"`
+    }
+
+    ListBodyNameData struct {
+        TopId      int64  `json:"top_id"`      // 标题ID
+        LinkAddr   string `json:"link_addr"`   // 链接地址
+        LinkName   string `json:"link_name"`   // 链接名称
+        LinkDesc   string `json:"link_desc"`   // 链接描述
+        Status     int64  `json:"status"`      // 状态
+        LinkIcon   string `json:"link_icon"`   // 链接icon
+        CreateTime int64  `json:"create_time"` // 创建时间
+        CreateBy   string `json:"create_by"`   // 创建人                           // 机构名称
+    }
+    ListBodyNameReq struct {}
+    ListBodyNameResp struct {
+        Message string `json:"message"`
+        Data []ListBodyNameData `json:"data"`
+        Total int64 `json:"total"`
+    }
+
+    AddTopNameReq struct {
+        Name   string `json:"name"`
+    }
+    AddTopNameResp struct {
+        Message string `json:"message"`
+    }
+
+    AddBodyNameReq struct {
+        TopName    int64  `json:"top_name"`      // 标题ID
+        LinkAddr   string `json:"link_addr"`   // 链接地址
+        LinkName   string `json:"link_name"`   // 链接名称
+        LinkDesc   string `json:"link_desc"`   //
+        LinkIcon   string `json:"link_icon"`
+    }
+    AddBodyNameResp struct {
+        Message string `json:"message"`
+    }
+
+    UpdateBodyNameReq struct {// 编号
+        LinkAddr   string `json:"link_addr"`   // 链接地址
+        LinkName   string `json:"link_name"`   // 链接名称
+        LinkDesc   string `json:"link_desc"`   //
+        LinkIcon   string `json:"link_icon"`                    // 机构名称
+    }
+
+    UpdateBodyNameResp struct {
+        Message string `json:"message"`
+    }
+
+    DeleteBodyNameReq struct {
+        LinkName   string `json:"link_name"`
+    }
+    DeleteBodyNameResp struct {
+        Message string `json:"message"`
+    }
+    DeleteTopNameReq struct {
+        Name   string `json:"name"`
+    }
+    DeleteTopNameResp struct {
+        Message string `json:"message"`
+    }
+)
+
+@server(
+    group: nav
+    prefix: /api/nav
+)
+service admin-api {
+    @doc "导航标题列表"
+    @handler ListTopName
+    post /list_top (ListTopNameReq) returns (ListTopNameResp)
+    @doc "导航标题内容列表"
+    @handler ListBodyName
+    post /list_body (ListBodyNameReq) returns (ListBodyNameResp)
+
+    @doc "添加导航标题"
+    @handler AddTopName
+    post /add_top (AddTopNameReq) returns (AddTopNameResp)
+    @doc "添加导航标题内容"
+    @handler AddBodyName
+    post /add_body (AddBodyNameReq) returns (AddBodyNameResp)
+
+    @doc "更新导航内容信息"
+    @handler UpdateBodyName
+    post /update (UpdateBodyNameReq) returns (UpdateBodyNameResp)
+
+    @doc "删除导航标题"
+    @handler DeleteTopName
+    post /delete_top (DeleteTopNameReq) returns (DeleteTopNameResp)
+    @doc "删除导航标题内容"
+    @handler DeleteBodyName
+    post /delete_body (DeleteBodyNameReq) returns (DeleteBodyNameResp)
+}

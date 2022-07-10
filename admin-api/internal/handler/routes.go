@@ -4,6 +4,7 @@ package handler
 import (
 	"net/http"
 
+	nav "github.com/haozheyu/oam_system/admin-api/internal/handler/nav"
 	user "github.com/haozheyu/oam_system/admin-api/internal/handler/user"
 	userdept "github.com/haozheyu/oam_system/admin-api/internal/handler/user/dept"
 	userrole "github.com/haozheyu/oam_system/admin-api/internal/handler/user/role"
@@ -117,5 +118,46 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		},
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 		rest.WithPrefix("/api/user/role"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/list_top",
+				Handler: nav.ListTopNameHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/list_body",
+				Handler: nav.ListBodyNameHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/add_top",
+				Handler: nav.AddTopNameHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/add_body",
+				Handler: nav.AddBodyNameHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/update",
+				Handler: nav.UpdateBodyNameHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete_top",
+				Handler: nav.DeleteTopNameHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete_body",
+				Handler: nav.DeleteBodyNameHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/api/nav"),
 	)
 }
