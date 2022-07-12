@@ -41,13 +41,11 @@ func (l *UserListLogic) UserList(req *types.ListUserReq) (resp *types.ListUserRe
 		roleBuilder := l.svcCtx.UserRoleModel.RowBuilder()
 		role_list, err := l.svcCtx.UserRoleModel.FindPageListByPage(l.ctx, roleBuilder, 1, 50, "")
 		if err != nil {
-			fmt.Println(role_list, err)
 			return nil, errors.New("角色列表获取失败")
 		}
 		deptBuilder := l.svcCtx.UserDeptModel.RowBuilder()
 		detp_list, err := l.svcCtx.UserDeptModel.FindPageListByPage(l.ctx, deptBuilder, 1, 50, "")
 		if err != nil {
-			fmt.Println(detp_list, err)
 			return nil, errors.New("部门列表获取失败")
 		}
 		var (
@@ -57,12 +55,14 @@ func (l *UserListLogic) UserList(req *types.ListUserReq) (resp *types.ListUserRe
 
 		for _, v := range list {
 			for _, v1 := range role_list {
-				v.RoleId = v1.Id
-				items.RoleName = v1.Name
+				if v.RoleId == v1.Id {
+					items.RoleName = v1.Name
+				}
 			}
 			for _, v1 := range detp_list {
-				v.RoleId = v1.Id
-				items.DeptName = v1.Name
+				if v.DeptId == v1.Id {
+					items.DeptName = v1.Name
+				}
 			}
 			_ = copier.Copy(&items, v)
 			resp_items = append(resp_items, items)

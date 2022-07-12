@@ -93,6 +93,7 @@ type ListUserResp struct {
 }
 
 type UpdateUserReq struct {
+	Name     string `json:"name"`
 	Email    string `json:"email"`
 	Mobile   string `json:"mobile"`
 	NickName string `json:"nickName"`

@@ -34,12 +34,17 @@ func (l *UserUpdateLogic) UserUpdate(req *types.UpdateUserReq) (resp *types.Upda
 		logx.WithContext(l.ctx).Errorf("用户不存在,参数:%s,异常:%s", preUser.Name, err.Error())
 		return nil, errors.New("用户不存在")
 	}
+	newUser, err := l.svcCtx.UserModel.FindOneByName(l.ctx, req.Name)
+	if err != nil {
+		logx.WithContext(l.ctx).Errorf("更新用户不存在,参数:%s,异常:%s", newUser.Name, err.Error())
+		return nil, errors.New("更新用户不存在")
+	}
 	return &types.UpdateUserResp{Message: "成功"}, l.svcCtx.UserModel.Update(l.ctx, &user.OamUser{
-		Id:             preUser.Id,
-		Name:           preUser.Name,
+		Id:             newUser.Id,
+		Name:           newUser.Name,
 		NickName:       req.NickName,
-		Avatar:         preUser.Avatar,
-		Password:       preUser.Password,
+		Avatar:         newUser.Avatar,
+		Password:       newUser.Password,
 		Email:          req.Email,
 		Mobile:         req.Mobile,
 		Status:         req.Status,
@@ -48,7 +53,7 @@ func (l *UserUpdateLogic) UserUpdate(req *types.UpdateUserReq) (resp *types.Upda
 		CreateTime:     time.Now().Unix(),
 		LastUpdateBy:   userName,
 		LastUpdateTime: time.Now().Unix(),
-		DelFlag:        preUser.DelFlag,
+		DelFlag:        newUser.DelFlag,
 		RoleId:         req.RoleId,
 		Sex:            req.Sex,
 		Age:            req.Age,
