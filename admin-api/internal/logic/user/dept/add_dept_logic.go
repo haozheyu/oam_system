@@ -31,6 +31,7 @@ func NewAddDeptLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AddDeptLo
 func (l *AddDeptLogic) AddDept(req *types.AddDeptReq) (resp *types.AddDeptResp, err error) {
 	userName := fmt.Sprintf("%s", l.ctx.Value("name"))
 	srcUser, err := l.svcCtx.UserModel.FindOneByName(l.ctx, userName)
+	var timesStamp = time.Now().Unix()
 	switch err {
 	case nil:
 		if srcUser.RoleId != 1 {
@@ -39,10 +40,10 @@ func (l *AddDeptLogic) AddDept(req *types.AddDeptReq) (resp *types.AddDeptResp, 
 		_, err := l.svcCtx.UserDeptModel.Insert(l.ctx, &user.OamUserDept{
 			Name:           req.Name,
 			CreateBy:       userName,
-			CreateTime:     time.Now().Unix(),
+			CreateTime:     timesStamp,
 			LastUpdateBy:   userName,
-			LastUpdateTime: time.Now().Unix(),
-			DelFlag:        0,
+			LastUpdateTime: timesStamp,
+			DelFlag:        1,
 		})
 		return &types.AddDeptResp{Message: "ok"}, err
 

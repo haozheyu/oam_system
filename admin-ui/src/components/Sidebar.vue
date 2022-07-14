@@ -136,8 +136,27 @@ export default {
                                 {
                                     index: "/create_user",
                                     title: "创建用户",
+                                },
+                                {
+                                    index: "/dept_list",
+                                    title: "部门管理",
                                 }
                                 ]
+                        },
+                        {
+                            icon: "el-icon-chicken",
+                            index: "/nav",
+                            title: "导航管理",
+                            subs: [
+                                {
+                                    index: "/nav_list",
+                                    title: "导航列表",
+                                },
+                                {
+                                    index: "/nav_add",
+                                    title: "添加导航",
+                                }
+                            ]
                         }
                     )
                     break;

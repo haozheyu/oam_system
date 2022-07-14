@@ -17,6 +17,7 @@ import (
 var (
 	oamUserDeptFieldNames          = builder.RawFieldNames(&OamUserDept{})
 	oamUserDeptRows                = strings.Join(oamUserDeptFieldNames, ",")
+	oamUserDeptRowsId              = strings.Join(stringx.Remove(oamUserDeptFieldNames, "`id`"), ",")
 	oamUserDeptRowsExpectAutoSet   = strings.Join(stringx.Remove(oamUserDeptFieldNames, "`id`", "`create_time`", "`update_time`", "`create_at`", "`update_at`"), ",")
 	oamUserDeptRowsWithPlaceHolder = strings.Join(stringx.Remove(oamUserDeptFieldNames, "`id`", "`create_time`", "`update_time`", "`create_at`", "`update_at`"), "=?,") + "=?"
 )
@@ -73,8 +74,8 @@ func (m *defaultOamUserDeptModel) FindOne(ctx context.Context, id int64) (*OamUs
 }
 
 func (m *defaultOamUserDeptModel) Insert(ctx context.Context, data *OamUserDept) (sql.Result, error) {
-	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?)", m.table, oamUserDeptRowsExpectAutoSet)
-	ret, err := m.conn.ExecCtx(ctx, query, data.Name, data.CreateBy, data.LastUpdateBy, data.LastUpdateTime, data.DelFlag)
+	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?)", m.table, oamUserDeptRowsId)
+	ret, err := m.conn.ExecCtx(ctx, query, data.Name, data.CreateBy, data.CreateTime, data.LastUpdateBy, data.LastUpdateTime, data.DelFlag)
 	return ret, err
 }
 

@@ -36,13 +36,18 @@ func (l *UpdateDeptLogic) UpdateDept(req *types.UpdateDeptReq) (resp *types.Upda
 		if name.RoleId != 1 {
 			return nil, errors.New("非系统管理员,不能更新部门信息")
 		}
-
+		one, err := l.svcCtx.UserDeptModel.FindOne(l.ctx, req.Id)
+		if err != nil {
+			return nil, errors.New("原部门信息未获取到,不能更新部门信息")
+		}
 		return &types.UpdateDeptResp{Message: "ok"}, l.svcCtx.UserDeptModel.Update(l.ctx, &user.OamUserDept{
 			Id:             req.Id,
 			Name:           req.Name,
+			CreateBy:       one.CreateBy,
+			CreateTime:     one.CreateTime,
 			LastUpdateBy:   userName,
 			LastUpdateTime: time.Now().Unix(),
-			DelFlag:        0,
+			DelFlag:        one.DelFlag,
 		})
 
 	case sqlc.ErrNotFound:

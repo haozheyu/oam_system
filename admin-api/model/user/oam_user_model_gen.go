@@ -16,6 +16,7 @@ import (
 var (
 	oamUserFieldNames          = builder.RawFieldNames(&OamUser{})
 	oamUserRows                = strings.Join(oamUserFieldNames, ",")
+	oamUserRowsId              = strings.Join(stringx.Remove(oamUserFieldNames, "`id`"), ",")
 	oamUserRowsExpectAutoSet   = strings.Join(stringx.Remove(oamUserFieldNames, "`id`", "`create_time`", "`update_time`", "`create_at`", "`update_at`"), ",")
 	oamUserRowsWithPlaceHolder = strings.Join(stringx.Remove(oamUserFieldNames, "`id`", "`create_time`", "`update_time`", "`create_at`", "`update_at`"), "=?,") + "=?"
 )
@@ -112,8 +113,8 @@ func (m *defaultOamUserModel) FindOneByName(ctx context.Context, name string) (*
 }
 
 func (m *defaultOamUserModel) Insert(ctx context.Context, data *OamUser) (sql.Result, error) {
-	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", m.table, oamUserRowsExpectAutoSet)
-	ret, err := m.conn.ExecCtx(ctx, query, data.Name, data.NickName, data.Avatar, data.Password, data.Email, data.Mobile, data.Status, data.DeptId, data.CreateBy, data.LastUpdateBy, data.LastUpdateTime, data.DelFlag, data.RoleId, data.Sex, data.Age)
+	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", m.table, oamUserRowsId)
+	ret, err := m.conn.ExecCtx(ctx, query, data.Name, data.NickName, data.Avatar, data.Password, data.Email, data.Mobile, data.Status, data.DeptId, data.CreateBy, data.CreateTime, data.LastUpdateBy, data.LastUpdateTime, data.DelFlag, data.RoleId, data.Sex, data.Age)
 	return ret, err
 }
 

@@ -11,6 +11,7 @@ info(
 
 type (
     ListTopNameData struct {
+        Id         int64   `json:"id"`
         Name       string `json:"name"`        // 名称
         CreateTime int64  `json:"create_time"` // 创建时间
         CreateBy   string `json:"create_by"`   // 创建人

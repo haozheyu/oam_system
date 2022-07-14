@@ -3,7 +3,7 @@ import request from '../utils/request'
 /**
  * 部门列表
  */
-export const Deptlist = data => {
+export const Deptlist = () => {
     return request({
         url: '/api/user/dept/list',
         method: 'POST'

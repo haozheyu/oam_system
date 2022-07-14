@@ -147,6 +147,30 @@ const routes = [
                     title: '用户列表'
                 },
                 component: () => import (/* webpackChunkName: "markdown" */ '../views/UserList.vue')
+            },
+            {
+                path: '/dept_list',
+                name: '部门列表',
+                meta: {
+                    title: '部门列表'
+                },
+                component: () => import (/* webpackChunkName: "markdown" */ '../views/DeptList.vue')
+            },
+            {
+                path: '/nav_list',
+                name: '导航列表',
+                meta: {
+                    title: '导航列表'
+                },
+                component: () => import (/* webpackChunkName: "markdown" */ '../views/NavList.vue')
+            },
+            {
+                path: '/nav_add',
+                name: '添加导航',
+                meta: {
+                    title: '添加导航'
+                },
+                component: () => import (/* webpackChunkName: "markdown" */ '../views/AddNav.vue')
             }
         ]
     }, {

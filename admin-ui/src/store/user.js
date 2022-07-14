@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { login, userList, updateUser } from "../api/user";
+import { login, userList, updateUser, AddUser } from "../api/user";
 import { ElMessage } from "element-plus";
 import { setItem, getItem, removeAllItem } from "../utils/storage"
 import router from '../router';
@@ -71,16 +71,21 @@ export const useUserStore = defineStore('userStore', {
         },
         async handleUpdateUser(param1,param2){
             console.log(param1, param2)
-            // await updateUser(param1).then((res)=>{
-            //     if (res.code !== 0){
-            //         ElMessage.warning(res.msg)
-            //     }
-            //     // 更新用户列表
-            //     this.handleUserList(param2)
-            //     ElMessage.success(res.msg)
-            // }).catch((err)=>{
-            //     ElMessage.warning(err)
-            // })
+            await updateUser(param1).then((res)=>{
+                // 更新用户列表
+                this.handleUserList(param2)
+                ElMessage.success(res.msg)
+            }).catch((err)=>{
+                ElMessage.warning(err)
+            })
+        },
+        async handleAddUser(param){
+            await AddUser(param).then((res)=>{
+                // 更新用户列表
+                ElMessage.success(res.msg)
+            }).catch((err) => {
+                ElMessage.warning(err)
+            })
         }
     }
 })

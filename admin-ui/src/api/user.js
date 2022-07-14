@@ -75,7 +75,9 @@ export const login = data => {
             "lastUpdateTime": setTimeStamp(),
             "avatar": "http://dummyimage.com/100x100",
             "mobile": data.mobile,
-            "nickName": data.nickName
+            "nickName": data.nickName,
+            "age": data.age,
+            "sex": data.sex
         }
     })
 }

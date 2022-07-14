@@ -5,60 +5,48 @@
                 <el-breadcrumb-item>
                     <i class="el-icon-lx-calendar"></i> 表单
                 </el-breadcrumb-item>
-                <el-breadcrumb-item>基本表单</el-breadcrumb-item>
+                <el-breadcrumb-item>创建用户</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
             <div class="form-box">
                 <el-form ref="formRef" :rules="rules" :model="form" label-width="80px">
-                    <el-form-item label="表单名称" prop="name">
+                    <el-form-item label="登录用户" prop="name">
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>
-                    <el-form-item label="选择器" prop="region">
-                        <el-select v-model="form.region" placeholder="请选择">
-                            <el-option key="bbk" label="步步高" value="bbk"></el-option>
-                            <el-option key="xtc" label="小天才" value="xtc"></el-option>
-                            <el-option key="imoo" label="imoo" value="imoo"></el-option>
+                    <el-form-item label="显示用户" prop="nickName">
+                        <el-input v-model="form.nickName"></el-input>
+                    </el-form-item>
+                    <el-form-item label="邮箱" prop="email">
+                        <el-input v-model="form.email"></el-input>
+                    </el-form-item>
+                    <el-form-item label="电话" prop="mobile">
+                        <el-input v-model="form.mobile"></el-input>
+                    </el-form-item>
+                    <el-form-item label="密码" prop="password">
+                        <el-input v-model="form.password"></el-input>
+                    </el-form-item>
+                    <el-form-item label="年龄" prop="age">
+                        <el-input v-model="form.age"></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="性别" prop="sex">
+                        <el-select v-model="form.sex" placeholder="男">
+                            <el-option label="男" value=1 />
+                            <el-option label="女" value=0 />
+                        </el-select>
+                    </el-form-item>  
+                    <el-form-item label="部门" prop="deptId">
+                    <el-select v-model="form.deptId" placeholder="选择部门">
+                        <el-option v-for="(item,index) in DeptListResp" :key="index" :label="item.name" :value="item.id"></el-option>
+                    </el-select>
+                    </el-form-item>
+                    <el-form-item label="角色" prop="roleId">
+                        <el-select v-model="form.roleId" placeholder="选择角色">
+                            <el-option v-for="(item,index) in RoleListResp" :key="index" :label="item.name" :value="item.id"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="日期时间">
-                        <el-col :span="11">
-                            <el-form-item prop="date1">
-                                <el-date-picker type="date" placeholder="选择日期" v-model="form.date1"
-                                    style="width: 100%;"></el-date-picker>
-                            </el-form-item>
-                        </el-col>
-                        <el-col class="line" :span="2">-</el-col>
-                        <el-col :span="11">
-                            <el-form-item prop="date2">
-                                <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;">
-                                </el-time-picker>
-                            </el-form-item>
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item label="城市级联" prop="options">
-                        <el-cascader :options="options" v-model="form.options"></el-cascader>
-                    </el-form-item>
-                    <el-form-item label="选择开关" prop="delivery">
-                        <el-switch v-model="form.delivery"></el-switch>
-                    </el-form-item>
-                    <el-form-item label="多选框" prop="type">
-                        <el-checkbox-group v-model="form.type">
-                            <el-checkbox label="步步高" name="type"></el-checkbox>
-                            <el-checkbox label="小天才" name="type"></el-checkbox>
-                            <el-checkbox label="imoo" name="type"></el-checkbox>
-                        </el-checkbox-group>
-                    </el-form-item>
-                    <el-form-item label="单选框" prop="resource">
-                        <el-radio-group v-model="form.resource">
-                            <el-radio label="步步高"></el-radio>
-                            <el-radio label="小天才"></el-radio>
-                            <el-radio label="imoo"></el-radio>
-                        </el-radio-group>
-                    </el-form-item>
-                    <el-form-item label="文本框" prop="desc">
-                        <el-input type="textarea" rows="5" v-model="form.desc"></el-input>
-                    </el-form-item>
+
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit">表单提交</el-button>
                         <el-button @click="onReset">重置表单</el-button>
@@ -72,77 +60,54 @@
 <script>
 import { reactive, ref } from "vue";
 import { ElMessage } from "element-plus";
+import { getItem } from "../utils/storage";
+import { setTimeStamp } from "../utils/time";
+import { Rolelist } from "../api/role";
+import { Deptlist } from "../api/dept";
+import { useUserStore } from "../store/user";
 export default {
-    name: "baseform",
+    name: "createUser",
     setup() {
-        const options = [
-            {
-                value: "guangdong",
-                label: "广东省",
-                children: [
-                    {
-                        value: "guangzhou",
-                        label: "广州市",
-                        children: [
-                            {
-                                value: "tianhe",
-                                label: "天河区",
-                            },
-                            {
-                                value: "haizhu",
-                                label: "海珠区",
-                            },
-                        ],
-                    },
-                    {
-                        value: "dongguan",
-                        label: "东莞市",
-                        children: [
-                            {
-                                value: "changan",
-                                label: "长安镇",
-                            },
-                            {
-                                value: "humen",
-                                label: "虎门镇",
-                            },
-                        ],
-                    },
-                ],
-            },
-            {
-                value: "hunan",
-                label: "湖南省",
-                children: [
-                    {
-                        value: "changsha",
-                        label: "长沙市",
-                        children: [
-                            {
-                                value: "yuelu",
-                                label: "岳麓区",
-                            },
-                        ],
-                    },
-                ],
-            },
-        ];
+        const userStore = useUserStore();
+        const DeptListResp = ref([]);
+        const RoleListResp = ref([]);
         const rules = {
             name: [
-                { required: true, message: "请输入表单名称", trigger: "blur" },
+                { required: true, message: "请输入登录用户名", trigger: "blur" },
+            ],
+            email: [
+                { required: true, message: "请输入邮箱", trigger: "blur" },
+            ],
+            password: [
+                { required: true, message: "请输入密码", trigger: "blur" },
+            ],
+            age: [
+                { required: true, message: "请输入年龄", trigger: "blur" },
+            ],
+            sex: [
+                { required: true, message: "请输入性别", trigger: "blur" },
+            ],
+            nickName: [
+                { required: true, message: "请输入名称", trigger: "blur" },
+            ],
+            mobile: [
+                { required: true, message: "请输入电话号", trigger: "blur" },
             ],
         };
         const formRef = ref(null);
         const form = reactive({
+            email: "",
             name: "",
-            region: "",
-            date1: "",
-            date2: "",
-            delivery: true,
-            type: ["步步高"],
-            resource: "小天才",
-            desc: "",
-            options: [],
+            deptId: 1,
+            roleId: 8,
+            password: "",
+            lastUpdateBy: getItem("userName"),
+            lastUpdateTime: setTimeStamp(),
+            age: 0,
+            sex: 1,
+            nickName: "",
+            mobile: "",
+            avatar: "http://dummyimage.com/100x100"
         });
         // 提交
         const onSubmit = () => {
@@ -150,7 +115,21 @@ export default {
             formRef.value.validate((valid) => {
                 if (valid) {
                     console.log(form);
-                    ElMessage.success("提交成功！");
+                     let user = {
+                        age: parseInt(form.age),
+                        avatar: form.avatar,
+                        deptId: parseInt(form.deptId),
+                        email: form.email,
+                        lastUpdateBy: form.lastUpdateBy,
+                        lastUpdateTime: parseInt(form.lastUpdateTime),
+                        mobile: form.mobile,
+                        name: form.name,
+                        nickName: form.nickName,
+                        password: form.password,
+                        roleId: parseInt(form.roleId),
+                        sex: parseInt(form.sex),
+                    }
+                    userStore.handleAddUser(user)
                 } else {
                     return false;
                 }
@@ -160,14 +139,45 @@ export default {
         const onReset = () => {
             formRef.value.resetFields();
         };
+        // 获取部门列表
+        const getDeptList = () => {
+            Deptlist().then((res)=>{
+                if (res.code !== 0) {
+                    ElMessage.warning(res.msg)
+                }else{
+                    DeptListResp.value = res.data.data
+                }
+            }).catch((err)=>{
+                console.log(err)
+                ElMessage.warning("后端接口异常")
+            })
+        };
+        getDeptList();
+        // 获取角色列表
+        const getRoleList = () => {
+             Rolelist().then((res)=>{
+                if (res.code !== 0) {
+                    ElMessage.warning(res.msg)
+                }else{
+                    RoleListResp.value = res.data.data
+                }
+            }).catch((err)=>{
+                console.log(err)
+                ElMessage.warning("后端接口异常")
+            })
+        };
+        getRoleList();
+        
 
         return {
-            options,
+            DeptListResp,
+            RoleListResp,
             rules,
             formRef,
             form,
             onSubmit,
             onReset,
+            userStore
         };
     },
 };
