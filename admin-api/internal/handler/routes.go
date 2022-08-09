@@ -4,6 +4,7 @@ package handler
 import (
 	"net/http"
 
+	host "github.com/haozheyu/oam_system/admin-api/internal/handler/host"
 	nav "github.com/haozheyu/oam_system/admin-api/internal/handler/nav"
 	user "github.com/haozheyu/oam_system/admin-api/internal/handler/user"
 	userdept "github.com/haozheyu/oam_system/admin-api/internal/handler/user/dept"
@@ -165,5 +166,31 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		},
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 		rest.WithPrefix("/api/nav"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodGet,
+				Path:    "/ws",
+				Handler: host.WsHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/hosts",
+				Handler: host.HostsHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/addHost",
+				Handler: host.AddHostHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/editHost",
+				Handler: host.EditHostHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/api/host"),
 	)
 }

@@ -9,3 +9,5 @@ import "user/dept.api"
 import "user/role.api"
 
 import "navigation/navigation.api"
+
+import "hosts/ssh.api"

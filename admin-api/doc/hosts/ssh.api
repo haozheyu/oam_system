@@ -1,0 +1,73 @@
+syntax = "v1"
+
+type (
+    GetWSReq struct {
+        User string `form:"user"`  // get type form is qurey string
+        Addr string `form:"addr"`
+        Port string `form:"port"`
+
+    }
+    GetWSResp struct {
+        User string `json:"user"`
+        Addr string `json:"addr"`
+        Port string `json:"port"`
+        Password string `json:"password"`
+    }
+
+    AddHostReq struct {
+       Addr string `json:"addr"`
+       User string `json:"user"`
+       Port string `json:"port"`
+       Password string  `json:"password"`
+    }
+    AddHostResp struct {
+       Message string    `json:"message"`
+    }
+
+    ListHostReq struct {
+        page int64 `json:"page,default=1"`
+        PageSize int64 `json:"pageSize,default=20"`
+    }
+    ListHostResp struct {
+        Page int64 `json:"page,default=1"`
+        PageSize int64 `json:"pageSize,default=20"`
+        Message string `json:"message"`
+        Data []AddHostReq `json:"data"`
+        Total int64 `json:"total"`
+    }
+    EditHostReq struct {
+        User string `json:"user"`
+        Addr string `json:"addr"`
+        Port string `json:"port"`
+        Password string `json:"password"`
+        isDel  string   `json:"isDel"`
+    }
+    EditHostResp struct {
+        Message string `json:"message"`
+    }
+
+)
+
+@server(
+    group: host
+//    jwt: Auth
+    prefix: /api/host
+)
+
+service admin-api {
+    @doc "webssh长链接"
+    @handler WsHandler
+    get /ws (GetWSReq) returns (GetWSResp)
+
+    @doc "主机列表"
+    @handler HostsHandler
+    post /hosts (ListHostReq) returns (ListHostResp)
+
+    @doc "添加主机"
+    @handler AddHostHandler
+    post /addHost (AddHostReq) returns (AddHostResp)
+
+    @doc "编辑主机"
+    @handler EditHostHandler
+    post /editHost (EditHostReq) returns (EditHostResp)
+}

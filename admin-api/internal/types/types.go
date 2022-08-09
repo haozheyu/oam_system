@@ -340,3 +340,52 @@ type GetTopBodyNameResp struct {
 	Data     []ListBodyNameData `json:"data"`
 	Total    int64              `json:"total"`
 }
+
+type GetWSReq struct {
+	User string `form:"user"` // get type form is qurey string
+	Addr string `form:"addr"`
+	Port string `form:"port"`
+}
+
+type GetWSResp struct {
+	User     string `json:"user"`
+	Addr     string `json:"addr"`
+	Port     string `json:"port"`
+	Password string `json:"password"`
+}
+
+type AddHostReq struct {
+	Addr     string `json:"addr"`
+	User     string `json:"user"`
+	Port     string `json:"port"`
+	Password string `json:"password"`
+}
+
+type AddHostResp struct {
+	Message string `json:"message"`
+}
+
+type ListHostReq struct {
+	Page     int64 `json:"page,default=1"`
+	PageSize int64 `json:"pageSize,default=20"`
+}
+
+type ListHostResp struct {
+	Page     int64        `json:"page,default=1"`
+	PageSize int64        `json:"pageSize,default=20"`
+	Message  string       `json:"message"`
+	Data     []AddHostReq `json:"data"`
+	Total    int64        `json:"total"`
+}
+
+type EditHostReq struct {
+	User     string `json:"user"`
+	Addr     string `json:"addr"`
+	Port     string `json:"port"`
+	Password string `json:"password"`
+	IsDel    string `json:"isDel"`
+}
+
+type EditHostResp struct {
+	Message string `json:"message"`
+}
