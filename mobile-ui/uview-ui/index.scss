@@ -1,0 +1,53 @@
+// 引入公共基础类
+@import "./libs/css/common.scss";
+@import "./libs/css/color.scss";
+
+// 非nvue的样式
+/* #ifndef APP-NVUE */
+@import "./libs/css/style.vue.scss";
+/* #endif */
+
+// nvue的特有样式
+/* #ifdef APP-NVUE */
+@import "./libs/css/style.nvue.scss";
+/* #endif */
+
+// 小程序特有的样式
+/* #ifdef MP */
+@import "./libs/css/style.mp.scss";
+/* #endif */
+
+// H5特有的样式
+/* #ifdef H5 */
+@import "./libs/css/style.h5.scss";
+/* #endif */
+
+.bg-1{
+	background-color: #F7F7F7;
+}
+
+.color6B{
+	color: #6BC362;
+}
+
+.bg6B{
+	background: #6BC362;
+}
+
+.colorFF{
+	color: #FFFFFF;
+}
+
+.title-blod{
+	font-size: 32rpx;
+	font-weight: bold;
+}
+
+.title-more{
+	font-size: 24rpx;
+	color: #6BC362;
+}
+
+.home{
+	padding: 20rpx;
+}

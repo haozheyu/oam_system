@@ -6,7 +6,8 @@ const routes = [
     {
         path: '/',
         redirect: '/dashboard'
-    }, {
+    },
+    {
         path: "/",
         name: "Home",
         component: Home,
@@ -18,7 +19,7 @@ const routes = [
                     title: '系统首页'
                 },
                 component: () => import ( /* webpackChunkName: "dashboard" */ "../views/Dashboard.vue")
-            }, 
+            },
             {
                 path: "/table",
                 name: "basetable",
@@ -26,7 +27,7 @@ const routes = [
                     title: '表格'
                 },
                 component: () => import ( /* webpackChunkName: "table" */ "../views/BaseTable.vue")
-            }, 
+            },
             {
                 path: "/charts",
                 name: "basecharts",
@@ -34,7 +35,7 @@ const routes = [
                     title: '图表'
                 },
                 component: () => import ( /* webpackChunkName: "charts" */ "../views/BaseCharts.vue")
-            }, 
+            },
             {
                 path: "/form",
                 name: "baseform",
@@ -42,7 +43,16 @@ const routes = [
                     title: '表单'
                 },
                 component: () => import ( /* webpackChunkName: "form" */ "../views/BaseForm.vue")
-            }, 
+            },
+            {
+                path: "/hosts",
+                name: "hosts",
+                meta: {
+                    title: '主机管理',
+                    keepAlive: false //     不需要缓存
+                },
+                component: () => import ( /* webpackChunkName: "form" */ "../views/HostTable.vue")
+            },
             {
                 path: "/tabs",
                 name: "tabs",
@@ -50,7 +60,7 @@ const routes = [
                     title: 'tab标签'
                 },
                 component: () => import ( /* webpackChunkName: "tabs" */ "../views/Tabs.vue")
-            }, 
+            },
             {
                 path: "/donate",
                 name: "donate",
@@ -58,7 +68,7 @@ const routes = [
                     title: '鼓励作者'
                 },
                 component: () => import ( /* webpackChunkName: "donate" */ "../views/Donate.vue")
-            }, 
+            },
             {
                 path: "/permission",
                 name: "permission",
@@ -67,7 +77,7 @@ const routes = [
                     permission: true
                 },
                 component: () => import ( /* webpackChunkName: "permission" */ "../views/Permission.vue")
-            }, 
+            },
             {
                 path: "/i18n",
                 name: "i18n",
@@ -75,7 +85,7 @@ const routes = [
                     title: '国际化语言'
                 },
                 component: () => import ( /* webpackChunkName: "i18n" */ "../views/I18n.vue")
-            }, 
+            },
             {
                 path: "/upload",
                 name: "upload",
@@ -83,7 +93,7 @@ const routes = [
                     title: '上传插件'
                 },
                 component: () => import ( /* webpackChunkName: "upload" */ "../views/Upload.vue")
-            }, 
+            },
             {
                 path: "/icon",
                 name: "icon",
@@ -91,7 +101,7 @@ const routes = [
                     title: '自定义图标'
                 },
                 component: () => import ( /* webpackChunkName: "icon" */ "../views/Icon.vue")
-            }, 
+            },
             {
                 path: '/404',
                 name: '404',
@@ -99,7 +109,7 @@ const routes = [
                     title: '找不到页面'
                 },
                 component: () => import (/* webpackChunkName: "404" */ '../views/404.vue')
-            }, 
+            },
             {
                 path: '/403',
                 name: '403',
@@ -107,7 +117,7 @@ const routes = [
                     title: '没有权限'
                 },
                 component: () => import (/* webpackChunkName: "403" */ '../views/403.vue')
-            }, 
+            },
             {
                 path: '/user',
                 name: 'user',
@@ -115,7 +125,7 @@ const routes = [
                     title: '个人中心'
                 },
                 component: () => import (/* webpackChunkName: "user" */ '../views/User.vue')
-            }, 
+            },
             {
                 path: '/editor',
                 name: 'editor',
@@ -123,7 +133,7 @@ const routes = [
                     title: '富文本编辑器'
                 },
                 component: () => import (/* webpackChunkName: "editor" */ '../views/Editor.vue')
-            }, 
+            },
             {
                 path: '/markdown',
                 name: 'markdown',
@@ -173,14 +183,24 @@ const routes = [
                 component: () => import (/* webpackChunkName: "markdown" */ '../views/AddNav.vue')
             }
         ]
-    }, {
+    },
+    {
         path: "/login",
         name: "Login",
         meta: {
             title: '登录'
         },
         component: () => import ( /* webpackChunkName: "login" */ "../views/Login.vue")
-    }
+    },
+    {
+        path: "/ws",
+        name: "会话窗口",
+        meta: {
+            title: '会话窗口',
+            keepAlive: false // 不需要缓存
+        },
+        component: () => import ( /* webpackChunkName: "form" */ "../views/term.vue")
+    },
 ];
 
 const router = createRouter({
@@ -190,6 +210,14 @@ const router = createRouter({
 
 // 白名单
 const whiteList = ['/login']
+
+// router.afterEach((to) => {  // 一定要再afterEach中判断而不是beforeEach，因为beforeEach在点击返回之后获取到的值不准确，每返回一次，会获取到延后一次的to、history
+//     if (window.history.state && window.history.state.forward) { // 或者判断 to.forward,window.history.state.forward是vue-router写入的，当返回或前进的时候才会有值
+//         to.meta.isBack = true;
+//     } else {
+//         to.meta.isBack = false;
+//     }
+// });
 
 router.beforeEach((to, from, next) => {
     document.title = `${to.meta.title} | oam-system`;

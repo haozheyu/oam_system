@@ -157,35 +157,54 @@ export default {
                                     title: "添加导航",
                                 }
                             ]
+                        },
+                        {
+                          icon: "el-icon-edit",
+                          index: "/host",
+                          title: "主机管理",
+                          subs: [
+                            {
+                              index: "/hosts",
+                              title: "主机列表",
+                            },
+                            {
+                              index: "/host_add",
+                              title: "添加主机",
+                            },
+                            {
+                              index: "/host_edit",
+                              title: "编辑主机",
+                            }
+                          ]
                         }
                     )
                     break;
                 case "项目负责人":
-                    
+
                 break;
                 case "产品经理":
-                
+
                 break;
                 case "UI设计师":
-                
+
                 break;
                 case "研发工程师":
-                
+
                 break;
                 case "测试工程师":
-                
+
                 break;
                 case "运营工程师":
-                
+
                 break;
                 case "新用户":
-                
+
                 break;
                 case "自定义角色":
-                
+
                 break;
                 default:
-                    
+
         }
         const route = useRoute();
         const onRoutes = computed(() => {

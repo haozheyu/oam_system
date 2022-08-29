@@ -6,10 +6,12 @@ require (
 	github.com/Masterminds/squirrel v1.5.3
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/golang-jwt/jwt/v4 v4.4.1
+	github.com/gorilla/websocket v1.4.2
 	github.com/jinzhu/copier v0.3.5
 	github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible
 	github.com/pkg/errors v0.9.1
 	github.com/zeromicro/go-zero v1.3.4
+	golang.org/x/crypto v0.0.0-20210920023735-84f357641f63
 )
 
 require (

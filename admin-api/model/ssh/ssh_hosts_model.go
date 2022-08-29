@@ -78,7 +78,7 @@ func (m *defaultSshHostsModel) DeleteStatus(ctx context.Context, addr string) er
 }
 
 func (m *defaultSshHostsModel) FindOneByQuery(ctx context.Context, rowBuilder squirrel.SelectBuilder) (*SshHosts, error) {
-	query, values, err := rowBuilder.Where("idDel = ?", 0).ToSql()
+	query, values, err := rowBuilder.ToSql()
 	if err != nil {
 		return nil, err
 	}

@@ -1,0 +1,182 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},{
+		// 	"path": "pages/index/search",
+		// 	"style": {
+		// 		"navigationBarTitleText": "搜索"
+		// 	}
+		// },{
+		// 	"path": "pages/index/detail",
+		// 	"style": {
+		// 		"navigationBarTitleText": "详情"
+		// 	}
+		// },{
+		// 	"path": "pages/category/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "分类"
+		// 	}
+		// },{
+			"path": "pages/mine/index",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		// },{
+		// 	"path": "pages/index/list",
+		// 	"style": {
+		// 		"navigationBarTitleText": "列表"
+		// 	}
+		// },{
+		// 	"path": "pages/login/login",
+		// 	"style": {
+		// 		"navigationBarTitleText": "登录"
+		// 	}
+		// },{
+		// 	"path": "pages/mine/setting",
+		// 	"style": {
+		// 		"navigationBarTitleText": "设置"
+		// 	}
+		// },{
+		// 	"path": "pages/mine/message",
+		// 	"style": {
+		// 		"navigationBarTitleText": "消息"
+		// 	}
+		// },{
+		// 	"path": "pages/mine/foot",
+		// 	"style": {
+		// 		"navigationBarTitleText": "足迹"
+		// 	}
+		// },{
+		// 	"path": "pages/mine/heart",
+		// 	"style": {
+		// 		"navigationBarTitleText": "收藏"
+		// 	}
+		// }	
+	 //    ,{
+  //           "path" : "pages/communication/communication",
+  //           "style" :                                                                                    
+  //           {
+  //               "navigationBarTitleText": "广场",
+  //               "enablePullDownRefresh": true
+  //           }
+            
+  //       }
+  //       ,{
+  //           "path" : "pages/register/register",
+  //           "style" :                                                                                    
+  //           {
+  //               "navigationBarTitleText": "注册",
+  //               "enablePullDownRefresh": false
+  //           }
+            
+  //       }
+  //       ,{
+  //           "path" : "pages/publish/publish",
+  //           "style" :                                                                                    
+  //           {
+  //               "navigationBarTitleText": "发布",
+  //               "enablePullDownRefresh": false
+  //           }
+            
+  //       }
+		// ,{
+		//     "path" : "pages/diary/details",
+		//     "style" :                                                                                    
+		//     {
+		//         "navigationBarTitleText": "详情",
+		//         "enablePullDownRefresh": false
+		//     }
+		    
+		// }
+  //       ,{
+  //           "path" : "pages/publish-note/publish-note",
+  //           "style" :                                                                                    
+  //           {
+  //               "navigationBarTitleText": "发布笔记",
+  //               "enablePullDownRefresh": false
+  //           }
+            
+  //       }
+  //       ,{
+  //           "path" : "pages/my-collect/my-collect",
+  //           "style" :                                                                                    
+  //           {
+  //               "navigationBarTitleText": "我的收藏",
+  //               "enablePullDownRefresh": false
+  //           }
+            
+  //       }
+  //       ,{
+  //           "path" : "pages/my-publish/my-publish",
+  //           "style" :                                                                                    
+  //           {
+  //               "navigationBarTitleText": "我的发布",
+  //               "enablePullDownRefresh": false
+  //           }
+            
+  //       }
+  //       ,{
+  //           "path" : "pages/mine/user-info/user-info",
+  //           "style" :                                                                                    
+  //           {
+  //               "navigationBarTitleText": "个人信息",
+  //               "enablePullDownRefresh": false
+  //           }
+            
+  //       }
+  //       ,{
+  //           "path" : "pages/order/order",
+  //           "style" :                                                                                    
+  //           {
+  //               "navigationBarTitleText": "",
+  //               "enablePullDownRefresh": false
+  //           }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationStyle":"custom",
+		"navigationBarTitleText": "oam-system",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#111111",
+		"selectedColor": "#6BC362",
+		"backgroundColor": "#FFFFFF",
+		"borderStyle": "black",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/tab/index.png",
+				"selectedIconPath": "static/tab/index_tab.png",
+				"text": "首页"
+			},
+			// {
+			// 	"pagePath": "pages/category/index",
+			// 	"iconPath": "static/tab/categary-no-select.png",
+			// 	"selectedIconPath": "static/tab/cate.png",
+			// 	"text": "窗口"
+			// },
+			// {
+			// 	"pagePath": "pages/communication/communication",
+			// 	"iconPath": "static/tab/communication-no-select.png",
+			// 	"selectedIconPath": "static/tab/communication.png",
+			// 	"text": "广场"
+			// },
+			{
+				"pagePath": "pages/mine/index",
+				"iconPath": "static/tab/mine1.png",
+				"selectedIconPath": "static/tab/mine-select.png",
+				"text": "我的"
+			}
+		]
+	}
+}
